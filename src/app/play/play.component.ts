@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TsumoService } from '../shared/service/tsumo.service';
 import { Mino } from '../shared/service/mino';
 import { AnswerType } from '../shared/service/answer-type.enum';
+import { PerfectPattern } from '../shared/service/perfect-pattern';
 
 /**
  * プレイ画面
@@ -29,6 +30,9 @@ export class PlayComponent implements OnInit {
   /** 正誤判定3 */
   anserMark3: number;
 
+  /** パフェパターン */
+  perfectMino: Mino[][] = [];
+
   constructor(
     private tsumoService: TsumoService
   ) { }
@@ -47,6 +51,7 @@ export class PlayComponent implements OnInit {
     this.anserMark1 = undefined;
     this.anserMark2 = undefined;
     this.anserMark3 = undefined;
+    this.perfectMino = [];
 
     // ツモを取得
     this.tsumo = this.tsumoService.getTsumo();
@@ -91,5 +96,13 @@ export class PlayComponent implements OnInit {
         this.anserMark1 = 1;
       }
     }
+
+    // 正解パターンを表示
+    if (answer.answer === AnswerType.EXISTS) {
+      answer.answers.forEach(minos => {
+        this.perfectMino.push(minos.split('').map(shape => new Mino(shape)));
+      })
+    }
+    console.log(this.perfectMino);
   }
 }

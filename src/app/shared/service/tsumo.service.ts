@@ -62,7 +62,7 @@ export class TsumoService {
    * ツモをランダムに入れ替える
    */
   private shuffle() {
-    const noList = Mino.getNoList();
+    const noList = Mino.getAll();
 
     // シャッフル
     let n = noList.length, t, i;
@@ -74,8 +74,8 @@ export class TsumoService {
     }
     // セット
     this.currentTumo = [];
-    noList.forEach(n => {
-      this.currentTumo.push(new Mino(n));
+    noList.forEach(shape => {
+      this.currentTumo.push(new Mino(shape));
     });
 
     // 4個まで

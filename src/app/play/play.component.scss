@@ -56,3 +56,12 @@
     outline: 0;
   }
 }
+table {
+  margin: 0 auto;
+  display: table;
+  overflow-x: initial;
+  max-width: 500px;
+  border-radius: .4rem;
+  text-align: center;
+  background: #FFF;
+}
