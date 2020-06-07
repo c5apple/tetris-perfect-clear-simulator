@@ -3,11 +3,11 @@
     <div class="col1">
       <img src="/assets/img/template.png" width="300">
     </div>
-    <div class="col2">
-      <div><img src="/assets/img/s-next.png" width="66"></div>
-      <div><img src="/assets/img/z-next.png" width="66"></div>
-      <div><img src="/assets/img/s-next.png" width="66"></div>
-      <div><img src="/assets/img/z-next.png" width="66"></div>
+    <div class="col2" *ngIf="tsumo">
+      <div><img [src]="tsumo[0].imgUrlNext" width="66"></div>
+      <div><img [src]="tsumo[1].imgUrl" width="57"></div>
+      <div><img [src]="tsumo[2].imgUrl" width="57"></div>
+      <div><img [src]="tsumo[3].imgUrl" width="57"></div>
     </div>
   </div>
 
