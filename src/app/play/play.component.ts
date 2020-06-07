@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TsumoService } from '../shared/service/tsumo.service';
+import { Mino } from '../shared/service/mino';
 
 /**
  * プレイ画面
@@ -10,6 +12,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayComponent implements OnInit {
 
+  /** ツモ */
+  tsumo: Mino[];
+
   /** 答えたか */
   answerShowed = false;
 
@@ -20,9 +25,28 @@ export class PlayComponent implements OnInit {
   /** 正誤判定3 */
   anserMark3: number;
 
-  constructor() { }
+  constructor(
+    private tsumoService: TsumoService
+  ) { }
 
   ngOnInit() {
+    // ツモを取得
+    this.getTsumo();
+  }
+
+  /**
+   * ツモを取得する
+   */
+  getTsumo(): void {
+    // 初期化
+    this.answerShowed = false;
+    this.anserMark1 = undefined;
+    this.anserMark2 = undefined;
+    this.anserMark3 = undefined;
+
+    // ツモを取得
+    this.tsumo = this.tsumoService.getTsumo();
+    console.log(this.tsumo);
   }
 
   /**
