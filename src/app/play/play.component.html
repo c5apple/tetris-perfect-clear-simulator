@@ -1,1 +1,55 @@
-<p>play works!</p>
+<div class="animated fadeIn">
+  <div class="container">
+    <div class="col1">
+      <img src="/assets/img/template.png" width="300">
+    </div>
+    <div class="col2">
+      <div><img src="/assets/img/s-next.png" width="66"></div>
+      <div><img src="/assets/img/z-next.png" width="66"></div>
+      <div><img src="/assets/img/s-next.png" width="66"></div>
+      <div><img src="/assets/img/z-next.png" width="66"></div>
+    </div>
+  </div>
+
+  <div>
+    <p class="h4">パフェはある？</p>
+
+    <p style="margin-left: -50px">
+      <span>
+        <ng-container [ngSwitch]="anserMark1">
+          <!-- レイアウト調整 -->
+          <span *ngSwitchCase="undefined" class="mark1" style="cursor: pointer;" (click)="answer(1)"></span>
+          <!-- マルバツ判定 -->
+          <img *ngSwitchCase="1" src="./assets/img/mark_maru.png" width="50" height="50" class="mark1 animated jello">
+          <img *ngSwitchCase="2" src="./assets/img/mark_batsu.png" width="50" height="50" class="mark1 animated jello">
+        </ng-container>
+        <button type="buttton" class="button button-black" (click)="answer(1)"
+          [disabled]="answerShowed">ある</button>&nbsp;
+      </span>
+      <span>
+        <ng-container [ngSwitch]="anserMark2">
+          <!-- レイアウト調整 -->
+          <span *ngSwitchCase="undefined" class="mark2" style="cursor: pointer;" (click)="answer(2)"></span>
+          <!-- マルバツ判定 -->
+          <img *ngSwitchCase="1" src="./assets/img/mark_maru.png" width="50" height="50" class="mark2 animated jello">
+          <img *ngSwitchCase="2" src="./assets/img/mark_batsu.png" width="50" height="50" class="mark2 animated jello">
+        </ng-container>
+        <button type="buttton" class="button-black" (click)="answer(2)"
+          [disabled]="answerShowed">ある(ホールドなし)</button>&nbsp;
+      </span>
+      <span>
+        <ng-container [ngSwitch]="anserMark3">
+          <!-- レイアウト調整 -->
+          <span *ngSwitchCase="undefined" class="mark3" style="cursor: pointer;" (click)="answer(3)"></span>
+          <!-- マルバツ判定 -->
+          <img *ngSwitchCase="1" src="./assets/img/mark_maru.png" width="50" height="50" class="mark3 animated jello">
+          <img *ngSwitchCase="2" src="./assets/img/mark_batsu.png" width="50" height="50" class="mark3 animated jello">
+        </ng-container>
+        <button type="buttton" class="button-black" (click)="answer(3)" [disabled]="answerShowed">ない</button>
+      </span>
+    </p>
+    <p>
+      <button type="buttton" class="button-black button-outline">次のツモを表示</button>
+    </p>
+  </div>
+</div>

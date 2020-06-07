@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+.h4 {
+  font-size: 2.2rem;
+  letter-spacing: -0.08rem;
+  line-height: 1.35;
+}
+.button-black {
+  background-color: black;
+  border-color: black;
+
+  &[disabled]:hover {
+    background-color: black;
+    border-color: black;
+  }
+
+  &.button-clear,
+  &.button-outline {
+    background-color: transparent;
+    color: black;
+  }
+  &.button-clear {
+    border-color: transparent;
+  }
+}

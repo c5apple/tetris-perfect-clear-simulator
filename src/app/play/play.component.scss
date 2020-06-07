@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+.col1 {
+  text-align: right;
+}
+.col2 {
+  padding-left: 1rem;
+  text-align: left;
+}
+.mark1 {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: 1.3em;
+  left: 4.2em;
+
+  &:hover + button {
+    background-color: #606c76;
+    border-color: #606c76;
+    color: #fff;
+    outline: 0;
+  }
+}
+.mark2 {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: 1.3em;
+  left: 6.6em;
+
+  &:hover + button {
+    background-color: #606c76;
+    border-color: #606c76;
+    color: #fff;
+    outline: 0;
+  }
+}
+.mark3 {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: 1.3em;
+  left: 4.2em;
+
+  &:hover + button {
+    background-color: #606c76;
+    border-color: #606c76;
+    color: #fff;
+    outline: 0;
+  }
+}
