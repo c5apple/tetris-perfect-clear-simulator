@@ -23,7 +23,7 @@ export class Mino {
    */
   constructor(shape: string) {
     this.shape = shape;
-    this.imgUrl = '/assets/img/mino/' + shape.toLowerCase() + '.png';
-    this.imgUrlNext = '/assets/img/mino/' + shape.toLowerCase() + '-next.png';
+    this.imgUrl = './assets/img/mino/' + shape.toLowerCase() + '.png';
+    this.imgUrlNext = './assets/img/mino/' + shape.toLowerCase() + '-next.png';
   }
 }

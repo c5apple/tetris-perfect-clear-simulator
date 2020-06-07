@@ -33,10 +33,10 @@ export class TsumoService {
    * 正誤判定を設定する
    */
   private setPerfectPattern(): void {
-    this.http.get<PerfectPattern[]>('/assets/json/perfect-pattern1.json').subscribe(data => {
+    this.http.get<PerfectPattern[]>('./assets/json/perfect-pattern1.json').subscribe(data => {
       this.perfectPattern1 = data;
     });
-    this.http.get<PerfectPattern[]>('/assets/json/perfect-pattern2.json').subscribe(data => {
+    this.http.get<PerfectPattern[]>('./assets/json/perfect-pattern2.json').subscribe(data => {
       this.perfectPattern2 = data;
     });
   }
