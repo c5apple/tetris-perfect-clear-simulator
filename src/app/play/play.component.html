@@ -27,17 +27,6 @@
           [disabled]="answerShowed">ある</button>&nbsp;
       </span>
       <span>
-        <ng-container [ngSwitch]="anserMark2">
-          <!-- レイアウト調整 -->
-          <span *ngSwitchCase="undefined" class="mark2" style="cursor: pointer;" (click)="answer(2)"></span>
-          <!-- マルバツ判定 -->
-          <img *ngSwitchCase="1" src="./assets/img/mark_maru.png" width="50" height="50" class="mark2 animated jello">
-          <img *ngSwitchCase="2" src="./assets/img/mark_batsu.png" width="50" height="50" class="mark2 animated jello">
-        </ng-container>
-        <button type="buttton" class="button-black" (click)="answer(2)"
-          [disabled]="answerShowed">ある(ホールドなし)</button>&nbsp;
-      </span>
-      <span>
         <ng-container [ngSwitch]="anserMark3">
           <!-- レイアウト調整 -->
           <span *ngSwitchCase="undefined" class="mark3" style="cursor: pointer;" (click)="answer(3)"></span>
