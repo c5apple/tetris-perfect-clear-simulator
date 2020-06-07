@@ -39,38 +39,38 @@ export class Mino {
     switch (no) {
       case 1:
         this.shape = 'I';
-        this.imgUrl = '/assets/img/i.png';
-        this.imgUrlNext = '/assets/img/i-next.png';
+        this.imgUrl = '/assets/img/mino/i.png';
+        this.imgUrlNext = '/assets/img/mino/i-next.png';
         break;
       case 2:
         this.shape = 'J';
-        this.imgUrl = '/assets/img/j.png';
-        this.imgUrlNext = '/assets/img/j-next.png';
+        this.imgUrl = '/assets/img/mino/j.png';
+        this.imgUrlNext = '/assets/img/mino/j-next.png';
         break;
       case 3:
         this.shape = 'L';
-        this.imgUrl = '/assets/img/l.png';
-        this.imgUrlNext = '/assets/img/l-next.png';
+        this.imgUrl = '/assets/img/mino/l.png';
+        this.imgUrlNext = '/assets/img/mino/l-next.png';
         break;
       case 4:
         this.shape = 'O';
-        this.imgUrl = '/assets/img/o.png';
-        this.imgUrlNext = '/assets/img/o-next.png';
+        this.imgUrl = '/assets/img/mino/o.png';
+        this.imgUrlNext = '/assets/img/mino/o-next.png';
         break;
       case 5:
         this.shape = 'S';
-        this.imgUrl = '/assets/img/s.png';
-        this.imgUrlNext = '/assets/img/s-next.png';
+        this.imgUrl = '/assets/img/mino/s.png';
+        this.imgUrlNext = '/assets/img/mino/s-next.png';
         break;
       case 6:
         this.shape = 'T';
-        this.imgUrl = '/assets/img/t.png';
-        this.imgUrlNext = '/assets/img/t-next.png';
+        this.imgUrl = '/assets/img/mino/t.png';
+        this.imgUrlNext = '/assets/img/mino/t-next.png';
         break;
       case 7:
         this.shape = 'Z';
-        this.imgUrl = '/assets/img/z.png';
-        this.imgUrlNext = '/assets/img/z-next.png';
+        this.imgUrl = '/assets/img/mino/z.png';
+        this.imgUrlNext = '/assets/img/mino/z-next.png';
         break;
     }
   }
