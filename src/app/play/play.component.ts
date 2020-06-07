@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TsumoService } from '../shared/service/tsumo.service';
 import { Mino } from '../shared/service/mino';
+import { AnswerType } from '../shared/service/answer-type.enum';
 
 /**
  * プレイ画面
@@ -59,7 +60,7 @@ export class PlayComponent implements OnInit {
    * 答えるボタン
    * @param buttonId 1:ある, 2:ある(ホールドなし), 3:ない
    */
-  answer(buttonId: number): void {
+  answer(buttonId: AnswerType): void {
     if (this.answerShowed) {
       return;
     }
@@ -69,9 +70,9 @@ export class PlayComponent implements OnInit {
     const tsumo = this.tsumo.map(mino => mino.shape).join('');
     const answer = this.tsumoService.getAnswer(tsumo);
 
-    if (buttonId === 1) {
+    if (buttonId === AnswerType.EXISTS) {
       // 「ある」と解答
-      if (answer.answer === 1) {
+      if (answer.answer === AnswerType.EXISTS) {
         // 正解
         this.anserMark1 = 1;
       } else {
@@ -81,7 +82,7 @@ export class PlayComponent implements OnInit {
       }
     } else {
       // 「ない」と解答
-      if (answer.answer === 0) {
+      if (answer.answer === AnswerType.NONE) {
         // 正解
         this.anserMark3 = 1;
       } else {

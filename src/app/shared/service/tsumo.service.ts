@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpResponse, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Mino } from './mino';
-import { AnswerType } from './answer-type.enum';
+import { PerfectPattern } from './perfect-pattern';
 
 /**
  * ツモサービス
@@ -18,9 +18,9 @@ export class TsumoService {
   currentTumo: Mino[];
 
   /** 正誤判定1 */
-  perfectPattern1: { "answer": number, "tsumo": string, "answers": [] }[];
+  perfectPattern1: PerfectPattern[];
   /** 正誤判定2 */
-  perfectPattern2: { "answer": number, "tsumo": string, "answers": [] }[];
+  perfectPattern2: PerfectPattern[];
 
   constructor(
     public http: HttpClient
@@ -33,11 +33,10 @@ export class TsumoService {
    * 正誤判定を設定する
    */
   private setPerfectPattern(): void {
-    // TODO クラス作成
-    this.http.get<{ "answer": number, "tsumo": string, "answers": [] }[]>('/assets/json/perfect-pattern1.json').subscribe(data => {
+    this.http.get<PerfectPattern[]>('/assets/json/perfect-pattern1.json').subscribe(data => {
       this.perfectPattern1 = data;
     });
-    this.http.get<{ "answer": number, "tsumo": string, "answers": [] }[]>('/assets/json/perfect-pattern2.json').subscribe(data => {
+    this.http.get<PerfectPattern[]>('/assets/json/perfect-pattern2.json').subscribe(data => {
       this.perfectPattern2 = data;
     });
   }
@@ -86,8 +85,7 @@ export class TsumoService {
   /**
    * パフェがあるかを取得する
    */
-  public getAnswer(tsumo: string) {
-    console.log(tsumo);
+  public getAnswer(tsumo: string): PerfectPattern {
     const pattern = this.perfectPattern2.find(pattern => pattern.tsumo === tsumo);
     console.log(pattern);
     if (pattern === undefined) {
