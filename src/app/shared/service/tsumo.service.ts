@@ -10,9 +10,21 @@ import { AnswerType } from './answer-type.enum';
 })
 export class TsumoService {
 
+  /** 現在の開幕テンプレ */
+  currentTemplate: number;
+
+  /** 現在のツモ */
   currentTumo: Mino[];
 
   constructor() { }
+
+  /**
+   * 開幕テンプレを取得する
+   */
+  public getTemplateNo(): number {
+    this.currentTemplate = 2; // TODO ランダム
+    return this.currentTemplate;
+  }
 
   /**
    * 新しいツモを取得する

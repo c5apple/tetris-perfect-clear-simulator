@@ -1,7 +1,7 @@
 <div class="animated fadeIn">
   <div class="container">
-    <div class="col1">
-      <img src="/assets/img/template.png" width="300">
+    <div class="col1" *ngIf="templateNo">
+      <img src="/assets/img/template{{templateNo}}.png" width="300">
     </div>
     <div class="col2" *ngIf="tsumo">
       <div><img [src]="tsumo[0].imgUrlNext" width="66"></div>

@@ -12,6 +12,9 @@ import { Mino } from '../shared/service/mino';
 })
 export class PlayComponent implements OnInit {
 
+  /** 開幕テンプレ */
+  templateNo: number;
+
   /** ツモ */
   tsumo: Mino[];
 
@@ -47,6 +50,9 @@ export class PlayComponent implements OnInit {
     // ツモを取得
     this.tsumo = this.tsumoService.getTsumo();
     console.log(this.tsumo);
+
+    // 開幕テンプレを取得
+    this.templateNo = this.tsumoService.getTemplateNo();
   }
 
   /**
