@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpResponse, HttpClient } from '@angular/common/http';
 import { Mino } from './mino';
 import { AnswerType } from './answer-type.enum';
 
@@ -16,7 +17,30 @@ export class TsumoService {
   /** 現在のツモ */
   currentTumo: Mino[];
 
-  constructor() { }
+  /** 正誤判定1 */
+  perfectPattern1: { "answer": number, "tsumo": string, "answers": [] }[];
+  /** 正誤判定2 */
+  perfectPattern2: { "answer": number, "tsumo": string, "answers": [] }[];
+
+  constructor(
+    public http: HttpClient
+  ) {
+    // 正誤判定初期化
+    this.setPerfectPattern();
+  }
+
+  /**
+   * 正誤判定を設定する
+   */
+  private setPerfectPattern(): void {
+    // TODO クラス作成
+    this.http.get<{ "answer": number, "tsumo": string, "answers": [] }[]>('/assets/json/perfect-pattern1.json').subscribe(data => {
+      this.perfectPattern1 = data;
+    });
+    this.http.get<{ "answer": number, "tsumo": string, "answers": [] }[]>('/assets/json/perfect-pattern2.json').subscribe(data => {
+      this.perfectPattern2 = data;
+    });
+  }
 
   /**
    * 開幕テンプレを取得する
@@ -62,7 +86,13 @@ export class TsumoService {
   /**
    * パフェがあるかを取得する
    */
-  public getAnswer(): AnswerType {
-    return AnswerType.EXISTS;
+  public getAnswer(tsumo: string) {
+    console.log(tsumo);
+    const pattern = this.perfectPattern2.find(pattern => pattern.tsumo === tsumo);
+    console.log(pattern);
+    if (pattern === undefined) {
+      throw new Error("Pattern Not Found!!");
+    }
+    return pattern;
   }
 }

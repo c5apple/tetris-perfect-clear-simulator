@@ -66,8 +66,29 @@ export class PlayComponent implements OnInit {
     this.answerShowed = true;
 
     // 正誤判定
-    // this.anserMark1 = 1;
-    this.anserMark2 = 1;
-    this.anserMark3 = 2;
+    const tsumo = this.tsumo.map(mino => mino.shape).join('');
+    const answer = this.tsumoService.getAnswer(tsumo);
+
+    if (buttonId === 1) {
+      // 「ある」と解答
+      if (answer.answer === 1) {
+        // 正解
+        this.anserMark1 = 1;
+      } else {
+        // 不正解
+        this.anserMark1 = 2;
+        this.anserMark3 = 1;
+      }
+    } else {
+      // 「ない」と解答
+      if (answer.answer === 0) {
+        // 正解
+        this.anserMark3 = 1;
+      } else {
+        // 不正解
+        this.anserMark3 = 2;
+        this.anserMark1 = 1;
+      }
+    }
   }
 }
