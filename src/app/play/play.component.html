@@ -48,11 +48,16 @@
       <th>1つ目</th>
       <th>2つ目</th>
       <th>3つ目</th>
+      <th>テト譜</th>
     </thead>
     <tbody>
-      <tr *ngFor="let minos of perfectMino">
+      <tr *ngFor="let minos of perfectMino; let i = index">
         <td *ngFor="let mino of minos">
           <img [src]="mino.imgUrl" [alt]="mino.shape" width="57">
+        </td>
+        <td>
+          <a [href]="tetofu[i]" target="_blank" rel="nofollow noreferrer noopener"
+            class="button button-black button-outline button-small">テト譜</a>
         </td>
       </tr>
     </tbody>

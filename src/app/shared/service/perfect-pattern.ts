@@ -13,4 +13,7 @@ export class PerfectPattern {
 
   /** パフェパターン */
   answers: string[];
+
+  /** テト譜 */
+  tetofu?: string[];
 }

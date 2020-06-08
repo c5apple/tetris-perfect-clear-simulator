@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Mino } from './mino';
 import { PerfectPattern } from './perfect-pattern';
+import { Tetofu } from './tetofu';
+import { AnswerType } from './answer-type.enum';
 
 /**
  * ツモサービス
@@ -22,6 +24,11 @@ export class TsumoService {
   /** 正誤判定2 */
   perfectPattern2: PerfectPattern[];
 
+  /** テト譜1 */
+  tetofu1: Tetofu[];
+  /** テト譜2 */
+  tetofu2: Tetofu[];
+
   constructor(
     public http: HttpClient
   ) {
@@ -38,6 +45,12 @@ export class TsumoService {
     });
     this.http.get<PerfectPattern[]>('./assets/json/perfect-pattern2.json').subscribe(data => {
       this.perfectPattern2 = data;
+    });
+    this.http.get<Tetofu[]>('./assets/json/tetofu1.json').subscribe(data => {
+      this.tetofu1 = data;
+    });
+    this.http.get<Tetofu[]>('./assets/json/tetofu2.json').subscribe(data => {
+      this.tetofu2 = data;
     });
   }
 
@@ -87,10 +100,27 @@ export class TsumoService {
    */
   public getAnswer(tsumo: string): PerfectPattern {
     const pattern = this.perfectPattern2.find(pattern => pattern.tsumo === tsumo);
-    console.log(pattern);
     if (pattern === undefined) {
+      alert('りすくませんぱい「問題発生」');
       throw new Error("Pattern Not Found!!");
     }
+
+    // テト譜結合
+    pattern.tetofu = [];
+    if (pattern.answer === AnswerType.EXISTS) {
+      pattern.answers.forEach(minos => {
+        const tetofu = this.tetofu2.find(pattern => pattern.tsumo === minos);
+        if (tetofu) {
+          pattern.tetofu.push(tetofu.tetofu);
+        } else {
+          // テト譜が存在しないバグあり
+          alert('りすくませんぱい「問題発生」');
+          console.error({ ...pattern });
+          throw new Error("Tetofu Not Found!!");
+        }
+      })
+    }
+
     return pattern;
   }
 }

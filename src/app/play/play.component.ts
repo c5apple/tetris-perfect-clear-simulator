@@ -35,6 +35,8 @@ export class PlayComponent implements OnInit {
 
   /** パフェパターン */
   perfectMino: Mino[][] = [];
+  /** テト譜 */
+  tetofu: string[] = [];
 
   constructor(
     private tsumoService: TsumoService
@@ -56,10 +58,10 @@ export class PlayComponent implements OnInit {
     this.answerMark3 = undefined;
     this.answerMessage = 'パフェはある？';
     this.perfectMino = [];
+    this.tetofu = [];
 
     // ツモを取得
     this.tsumo = this.tsumoService.getTsumo();
-    console.log(this.tsumo);
 
     // 開幕テンプレを取得
     this.templateNo = this.tsumoService.getTemplateNo();
@@ -109,8 +111,8 @@ export class PlayComponent implements OnInit {
     if (answer.answer === AnswerType.EXISTS) {
       answer.answers.forEach(minos => {
         this.perfectMino.push(minos.split('').map(shape => new Mino(shape)));
-      })
+      });
+      this.tetofu = answer.tetofu;
     }
-    console.log(this.perfectMino);
   }
 }
