@@ -24,11 +24,11 @@ export class PlayComponent implements OnInit {
   answerShowed = false;
 
   /** 正誤判定1 */
-  anserMark1: number;
+  answerMark1: number;
   /** 正誤判定2 */
-  anserMark2: number;
+  answerMark2: number;
   /** 正誤判定3 */
-  anserMark3: number;
+  answerMark3: number;
 
   /** パフェパターン */
   perfectMino: Mino[][] = [];
@@ -48,9 +48,9 @@ export class PlayComponent implements OnInit {
   getTsumo(): void {
     // 初期化
     this.answerShowed = false;
-    this.anserMark1 = undefined;
-    this.anserMark2 = undefined;
-    this.anserMark3 = undefined;
+    this.answerMark1 = undefined;
+    this.answerMark2 = undefined;
+    this.answerMark3 = undefined;
     this.perfectMino = [];
 
     // ツモを取得
@@ -79,21 +79,21 @@ export class PlayComponent implements OnInit {
       // 「ある」と解答
       if (answer.answer === AnswerType.EXISTS) {
         // 正解
-        this.anserMark1 = 1;
+        this.answerMark1 = 1;
       } else {
         // 不正解
-        this.anserMark1 = 2;
-        this.anserMark3 = 1;
+        this.answerMark1 = 2;
+        this.answerMark3 = 1;
       }
     } else {
       // 「ない」と解答
       if (answer.answer === AnswerType.NONE) {
         // 正解
-        this.anserMark3 = 1;
+        this.answerMark3 = 1;
       } else {
         // 不正解
-        this.anserMark3 = 2;
-        this.anserMark1 = 1;
+        this.answerMark3 = 2;
+        this.answerMark1 = 1;
       }
     }
 
