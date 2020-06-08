@@ -7,17 +7,25 @@
   background-color: black;
   border-color: black;
 
-  &[disabled]:hover {
-    background-color: black;
-    border-color: black;
+  &[disabled] {
+    &:hover,
+    &:focus {
+      background-color: black;
+      border-color: black;
+    }
   }
 
   &.button-clear,
   &.button-outline {
-    background-color: transparent;
+    background-color: #fff;
     color: black;
+
+    &:hover,
+    &:focus {
+      background: rgba(255, 255, 255, 0.8);
+    }
   }
   &.button-clear {
-    border-color: transparent;
+    background-color: #fff;
   }
 }
