@@ -8,6 +8,8 @@ import { TopComponent } from './top/top.component';
 import { PlayComponent } from './play/play.component';
 import { ScoreComponent } from './score/score.component';
 import { SettingComponent } from './setting/setting.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { SettingComponent } from './setting/setting.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

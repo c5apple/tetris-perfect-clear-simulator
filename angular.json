@@ -26,7 +26,8 @@
             "assets": [
               "src/.htaccess",
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "node_modules/milligram/dist/milligram.min.css",
@@ -63,7 +64,9 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
@@ -94,7 +97,8 @@
             "assets": [
               "src/.htaccess",
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "node_modules/milligram/dist/milligram.min.css",
