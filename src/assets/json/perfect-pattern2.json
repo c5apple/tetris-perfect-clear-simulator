@@ -835,8 +835,8 @@
 {"answer":1, "tsumo":"SJZL", "answers":["JZS"]},
 {"answer":1, "tsumo":"SJZO", "answers":["JZS"]},
 {"answer":1, "tsumo":"SJZT", "answers":["JST","JZS"]},
-{"answer":1, "tsumo":"SJTI", "answers":["JTI","SJI","SJT"]},
-{"answer":1, "tsumo":"SJTL", "answers":["SJT"]},
-{"answer":1, "tsumo":"SJTO", "answers":["SJT"]},
-{"answer":1, "tsumo":"SJTZ", "answers":["SJT"]}
+{"answer":1, "tsumo":"SJTI", "answers":["JTI","SJI","JST"]},
+{"answer":1, "tsumo":"SJTL", "answers":["JST"]},
+{"answer":1, "tsumo":"SJTO", "answers":["JST"]},
+{"answer":1, "tsumo":"SJTZ", "answers":["JST"]}
 ]
