@@ -38,7 +38,8 @@
       </span>
     </p>
     <p>
-      <button type="buttton" class="button-black button-outline" (click)="getTsumo()">次のツモを表示</button>
+      <a *ngIf="isDebug" routerLink="/play" class="button button-black button-outline">次のツモを表示</a>
+      <button *ngIf="!isDebug" type="buttton" class="button-black button-outline" (click)="getTsumo()">次のツモを表示</button>
     </p>
   </div>
 

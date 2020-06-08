@@ -64,9 +64,20 @@ export class TsumoService {
 
   /**
    * 新しいツモを取得する
+   *
+   * @param tsumo デバッグ用ツモ指定
    */
-  public getTsumo(): Mino[] {
-    this.shuffle();
+  public getTsumo(tsumo?: string): Mino[] {
+    if (tsumo) {
+      // ツモ指定
+      this.currentTumo = [];
+      tsumo.split("").forEach(shape => {
+        this.currentTumo.push(new Mino(shape));
+      });
+    } else {
+      // ランダム
+      this.shuffle();
+    }
 
     return this.currentTumo;
   }

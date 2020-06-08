@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TsumoService } from '../shared/service/tsumo.service';
 import { Mino } from '../shared/service/mino';
 import { AnswerType } from '../shared/service/answer-type.enum';
-import { PerfectPattern } from '../shared/service/perfect-pattern';
 
 /**
  * プレイ画面
@@ -38,19 +38,30 @@ export class PlayComponent implements OnInit {
   /** テト譜 */
   tetofu: string[] = [];
 
+  /**
+   * デバッグか
+   * (パスパラメータを渡すと指定したツモが引ける)
+   */
+  isDebug = false;
+
   constructor(
+    private route: ActivatedRoute,
     private tsumoService: TsumoService
   ) { }
 
   ngOnInit() {
-    // ツモを取得
-    this.getTsumo();
+    this.route.params.subscribe((params: { tsumo: string }) => {
+      // ツモを取得
+      this.getTsumo(params.tsumo);
+
+      this.isDebug = Boolean(params.tsumo);
+    });
   }
 
   /**
    * ツモを取得する
    */
-  getTsumo(): void {
+  getTsumo(tsumo?: string): void {
     // 初期化
     this.answerShowed = false;
     this.answerMark1 = undefined;
@@ -61,7 +72,7 @@ export class PlayComponent implements OnInit {
     this.tetofu = [];
 
     // ツモを取得
-    this.tsumo = this.tsumoService.getTsumo();
+    this.tsumo = this.tsumoService.getTsumo(tsumo);
 
     // 開幕テンプレを取得
     this.templateNo = this.tsumoService.getTemplateNo();
