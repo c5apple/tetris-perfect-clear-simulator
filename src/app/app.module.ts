@@ -10,6 +10,7 @@ import { ScoreComponent } from './score/score.component';
 import { SettingComponent } from './setting/setting.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MyAdsenseModule } from './shared/component/my-adsense/my-adsense.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { environment } from '../environments/environment';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    MyAdsenseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

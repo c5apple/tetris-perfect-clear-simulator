@@ -23,6 +23,7 @@
     "@angular/service-worker": "~8.2.8",
     "animate.css": "^4.1.0",
     "milligram": "^1.4.0",
+    "ng2-adsense": "^8.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
