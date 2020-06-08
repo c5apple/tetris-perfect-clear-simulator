@@ -27,7 +27,8 @@
               "src/.htaccess",
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/sitemap.xml"
             ],
             "styles": [
               "node_modules/milligram/dist/milligram.min.css",
@@ -98,7 +99,8 @@
               "src/.htaccess",
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/sitemap.xml"
             ],
             "styles": [
               "node_modules/milligram/dist/milligram.min.css",
