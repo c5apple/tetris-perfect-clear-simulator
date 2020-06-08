@@ -30,6 +30,9 @@ export class PlayComponent implements OnInit {
   /** 正誤判定3 */
   answerMark3: number;
 
+  /** 正誤メッセージ */
+  answerMessage: string;
+
   /** パフェパターン */
   perfectMino: Mino[][] = [];
 
@@ -51,6 +54,7 @@ export class PlayComponent implements OnInit {
     this.answerMark1 = undefined;
     this.answerMark2 = undefined;
     this.answerMark3 = undefined;
+    this.answerMessage = 'パフェはある？';
     this.perfectMino = [];
 
     // ツモを取得
@@ -80,20 +84,24 @@ export class PlayComponent implements OnInit {
       if (answer.answer === AnswerType.EXISTS) {
         // 正解
         this.answerMark1 = 1;
+        this.answerMessage = '正解!! パフェはあります';
       } else {
         // 不正解
         this.answerMark1 = 2;
         this.answerMark3 = 1;
+        this.answerMessage = '残念!! パフェはありません';
       }
     } else {
       // 「ない」と解答
       if (answer.answer === AnswerType.NONE) {
         // 正解
         this.answerMark3 = 1;
+        this.answerMessage = '正解!! パフェはありません';
       } else {
         // 不正解
         this.answerMark3 = 2;
         this.answerMark1 = 1;
+        this.answerMessage = '残念!! パフェはあります';
       }
     }
 
