@@ -8,6 +8,7 @@ import { SettingComponent } from './setting/setting.component';
 
 const routes: Routes = [
   { path: '', component: TopComponent },
+  { path: 'home', component: TopComponent }, //PWA
   { path: 'play', component: PlayComponent },
   { path: 'play/:tsumo', component: PlayComponent },
   { path: 'score', component: ScoreComponent },
