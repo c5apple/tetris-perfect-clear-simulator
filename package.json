@@ -21,6 +21,8 @@
     "@angular/pwa": "^0.901.7",
     "@angular/router": "~8.2.8",
     "@angular/service-worker": "~8.2.8",
+    "@ngx-translate/core": "^12.1.2",
+    "@ngx-translate/http-loader": "^4.0.0",
     "animate.css": "^4.1.0",
     "milligram": "^1.4.0",
     "ng2-adsense": "^8.0.1",
