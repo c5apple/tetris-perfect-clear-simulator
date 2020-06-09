@@ -4,6 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { SwUpdate } from '@angular/service-worker';
 import { TranslateService } from '@ngx-translate/core';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { GaService } from './shared/service/ga';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
     private meta: Meta,
     private title: Title,
     private swUpdate: SwUpdate,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private gaService: GaService
   ) {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.subscribe(() => {
@@ -66,6 +68,9 @@ export class AppComponent implements OnInit {
       this.translate.get('説明文').subscribe(appDescription => {
         this.meta.updateTag({ name: 'description', content: appDescription });
       });
+
+      // tracking
+      this.gaService.sendPageView(params.url);
     });
   }
 
