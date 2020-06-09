@@ -71,19 +71,22 @@ export class AppComponent implements OnInit {
 
   /** サポート言語 */
   private availableLangList = ['en', 'ja'];
+  /** サポートHTML言語 */
+  private availableHtmlLangList = ['en-US', 'ja-JP'];
 
   /**
    * 言語チェック
    */
   private checkLang(lang: string) {
-    if (this.availableLangList.indexOf(lang) === -1) {
+    const langNo = this.availableLangList.indexOf(lang);
+    if (langNo === -1) {
       // デフォルト英語
       return window.location.href = './en/';
     }
     // 言語設定
     this.translate.setDefaultLang(lang);
     this.translate.use(lang);
-    document.documentElement.lang = lang;
+    document.documentElement.lang = this.availableHtmlLangList[langNo];
     document.getElementById('my-manifest').setAttribute('href', 'manifest_' + lang + '.webmanifest');
   }
 
