@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { SwUpdate } from '@angular/service-worker';
 import { TranslateService } from '@ngx-translate/core';
 import { filter, map, mergeMap } from 'rxjs/operators';
@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private meta: Meta,
+    private title: Title,
     private swUpdate: SwUpdate,
     private translate: TranslateService
   ) {
@@ -53,6 +54,13 @@ export class AppComponent implements OnInit {
       } else {
         this.meta.removeTag('name=robots');
       }
+
+      // タイトル設定
+      this.translate.get('タイトル').subscribe(appTitle => {
+        const titles: Array<string> = this.getRouterData(this.router.routerState, this.router.routerState.root, 'title');
+        const title = ((titles.length > 0) ? titles.pop() + ' - ' : '') + appTitle;
+        this.title.setTitle(title);
+      });
     });
   }
 
@@ -69,5 +77,22 @@ export class AppComponent implements OnInit {
     }
     // 言語設定
     this.translate.setDefaultLang(lang);
+  }
+
+  /**
+     * Router設定値を取得する。
+     * @param state 状態
+     * @param parent 親
+     */
+  private getRouterData(state, parent, key: string): Array<string> {
+    const data: Array<string> = [];
+    if (parent && parent.snapshot.data && parent.snapshot.data[key]) {
+      data.push(parent.snapshot.data[key]);
+    }
+    if (state && parent) {
+      // 再帰
+      data.push(... this.getRouterData(state, state.firstChild(parent), key));
+    }
+    return data;
   }
 }
