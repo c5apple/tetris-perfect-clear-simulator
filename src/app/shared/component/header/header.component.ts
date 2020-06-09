@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService, DefaultLangChangeEvent } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  /** 言語 */
+  lang = '';
+
+  constructor(
+    private translate: TranslateService
+  ) { }
 
   ngOnInit() {
+    this.translate.onDefaultLangChange.subscribe((event: DefaultLangChangeEvent) => {
+      this.lang = event.lang;
+    });
   }
 
 }
