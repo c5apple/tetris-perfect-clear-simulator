@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
     });
 
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((params: any) => {
-      if (params.url !== '/') {
+      if (this.availableLangList.map(lang => '/' + lang).indexOf(params.url) === -1) {
         this.meta.addTag({ name: 'robots', content: 'noindex' });
       } else {
         this.meta.removeTag('name=robots');
@@ -93,6 +93,7 @@ export class AppComponent implements OnInit {
     this.translate.use(lang);
     document.documentElement.lang = this.availableHtmlLangList[langNo];
     document.getElementById('my-manifest').setAttribute('href', 'manifest_' + lang + '.webmanifest');
+    document.getElementById('canonical').setAttribute('href', 'https://games.banana-juice.com/tetris-perfect-clear-simulator/' + lang);
   }
 
   /**
