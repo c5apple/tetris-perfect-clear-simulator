@@ -82,13 +82,16 @@ export class AppComponent implements OnInit {
     }
     // 言語設定
     this.translate.setDefaultLang(lang);
+    this.translate.use(lang);
+    document.documentElement.lang = lang;
+    document.getElementById('my-manifest').setAttribute('href', 'manifest_' + lang + '.webmanifest');
   }
 
   /**
-     * Router設定値を取得する。
-     * @param state 状態
-     * @param parent 親
-     */
+   * Router設定値を取得する。
+   * @param state 状態
+   * @param parent 親
+   */
   private getRouterData(state, parent, key: string): Array<string> {
     const data: Array<string> = [];
     if (parent && parent.snapshot.data && parent.snapshot.data[key]) {

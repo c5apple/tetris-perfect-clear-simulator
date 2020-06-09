@@ -1,5 +1,19 @@
 {
-  "タイトル": "Tetris Perfect Clear Simulator",
-  "説明文": "This is a site to practice the All Clear of Tetris.",
-  "スタート": "START"
+  "タイトル": "Tetris All Clear Simulator",
+  "説明文": "The website to practice the All Clear of Tetris.",
+  "日本語版はこちら": "Click here for Japanese version",
+  "英語版はこちら": "Click here for English version",
+  "スタート": "START",
+  "質問文": "Can you clear all complete?",
+  "はい": "YES",
+  "いいえ": "NO",
+  "次のツモ": "NEXT",
+  "正解パフェあり": "Correct!",
+  "誤答パフェなし": "Wrong!",
+  "正解パフェなし": "Correct!",
+  "誤答パフェあり": "Wrong!",
+  "一つ目": "First",
+  "二つ目": "Second",
+  "三つ目": "Third",
+  "テト譜": "Simulation"
 }

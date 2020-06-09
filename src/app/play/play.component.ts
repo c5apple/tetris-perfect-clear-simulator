@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService, DefaultLangChangeEvent } from '@ngx-translate/core';
 import { TsumoService } from '../shared/service/tsumo.service';
 import { Mino } from '../shared/service/mino';
 import { AnswerType } from '../shared/service/answer-type.enum';
@@ -13,6 +14,9 @@ import { AnswerType } from '../shared/service/answer-type.enum';
   styleUrls: ['./play.component.scss']
 })
 export class PlayComponent implements OnInit {
+
+  /** 言語 */
+  lang = '';
 
   /** 開幕テンプレ */
   templateNo: number;
@@ -46,17 +50,16 @@ export class PlayComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private tsumoService: TsumoService
+    private tsumoService: TsumoService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: { lang: string, tsumo: string }) => {
-      // 言語設定
-      document.documentElement.lang = params.lang;
-      document.getElementById('my-manifest').setAttribute('href', 'manifest_' + params.lang + '.webmanifest');
-
       // ツモを取得
       this.getTsumo(params.tsumo);
+      // 言語設定
+      this.lang = params.lang;
 
       this.isDebug = Boolean(params.tsumo);
     });
@@ -71,7 +74,9 @@ export class PlayComponent implements OnInit {
     this.answerMark1 = undefined;
     this.answerMark2 = undefined;
     this.answerMark3 = undefined;
-    this.answerMessage = 'パフェはある？';
+    this.translate.get('質問文').subscribe(answerMessage => {
+      this.answerMessage = answerMessage;
+    });
     this.perfectMino = [];
     this.tetofu = [];
 
@@ -101,24 +106,32 @@ export class PlayComponent implements OnInit {
       if (answer.answer === AnswerType.EXISTS) {
         // 正解
         this.answerMark1 = 1;
-        this.answerMessage = '正解!! パフェはあります';
+        this.translate.get('正解パフェあり').subscribe(answerMessage => {
+          this.answerMessage = answerMessage;
+        });
       } else {
         // 不正解
         this.answerMark1 = 2;
         this.answerMark3 = 1;
-        this.answerMessage = '残念!! パフェはありません';
+        this.translate.get('誤答パフェなし').subscribe(answerMessage => {
+          this.answerMessage = answerMessage;
+        });
       }
     } else {
       // 「ない」と解答
       if (answer.answer === AnswerType.NONE) {
         // 正解
         this.answerMark3 = 1;
-        this.answerMessage = '正解!! パフェはありません';
+        this.translate.get('正解パフェなし').subscribe(answerMessage => {
+          this.answerMessage = answerMessage;
+        });
       } else {
         // 不正解
         this.answerMark3 = 2;
         this.answerMark1 = 1;
-        this.answerMessage = '残念!! パフェはあります';
+        this.translate.get('誤答パフェあり').subscribe(answerMessage => {
+          this.answerMessage = answerMessage;
+        });
       }
     }
 

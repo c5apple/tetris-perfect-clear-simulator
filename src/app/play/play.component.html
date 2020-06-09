@@ -24,7 +24,7 @@
           <img *ngSwitchCase="2" src="./assets/img/mark_batsu.png" width="50" height="50" class="mark1 animated jello">
         </ng-container>
         <button type="buttton" class="button button-black" (click)="answer(1)"
-          [disabled]="answerShowed">ある</button>&nbsp;
+          [disabled]="answerShowed">{{ 'はい' | translate }}</button>&nbsp;
       </span>
       <span>
         <ng-container [ngSwitch]="answerMark3">
@@ -34,22 +34,25 @@
           <img *ngSwitchCase="1" src="./assets/img/mark_maru.png" width="50" height="50" class="mark3 animated jello">
           <img *ngSwitchCase="2" src="./assets/img/mark_batsu.png" width="50" height="50" class="mark3 animated jello">
         </ng-container>
-        <button type="buttton" class="button-black" (click)="answer(3)" [disabled]="answerShowed">ない</button>
+        <button type="buttton" class="button button-black" (click)="answer(3)"
+          [disabled]="answerShowed">{{ 'いいえ' | translate }}</button>
       </span>
     </p>
     <p>
-      <a *ngIf="isDebug" routerLink="/play" class="button button-black button-outline">次のツモを表示</a>
-      <button *ngIf="!isDebug" type="buttton" class="button-black button-outline" (click)="getTsumo()">次のツモを表示</button>
+      <a *ngIf="isDebug" [routerLink]="['/', lang, 'play']"
+        class="button button-black button-outline">{{ '次のツモ' | translate }}</a>
+      <button *ngIf="!isDebug" type="buttton" class="button-black button-outline"
+        (click)="getTsumo()">{{ '次のツモ' | translate }}</button>
     </p>
   </div>
 
   <!-- パフェパターン表示 -->
   <table *ngIf="perfectMino.length > 0">
     <thead>
-      <th>1つ目</th>
-      <th>2つ目</th>
-      <th>3つ目</th>
-      <th>テト譜</th>
+      <th>{{ '一つ目' | translate}}</th>
+      <th>{{ '二つ目' | translate}}</th>
+      <th>{{ '三つ目' | translate}}</th>
+      <th>{{ 'テト譜' | translate}}</th>
     </thead>
     <tbody>
       <tr *ngFor="let minos of perfectMino; let i = index">
@@ -58,7 +61,7 @@
         </td>
         <td>
           <a [href]="tetofu[i]" target="_blank" rel="nofollow noreferrer noopener"
-            class="button button-black button-outline button-small">テト譜</a>
+            class="button button-black button-outline button-small">{{ 'テト譜' | translate}}</a>
         </td>
       </tr>
     </tbody>
