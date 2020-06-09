@@ -1,3 +1,9 @@
 # テトリス 開幕パフェシミュレーター
 
-https://games.banana-juice.com/tetris-perfect-clear-simulator/
+## 日本語版
+
+https://games.banana-juice.com/tetris-perfect-clear-simulator/ja
+
+## 英語版
+
+https://games.banana-juice.com/tetris-perfect-clear-simulator/en
