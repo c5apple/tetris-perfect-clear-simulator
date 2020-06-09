@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
       });
 
       // tracking
-      this.gaService.sendPageView(params.url);
+      this.gaService.sendPageView(location.pathname);
     });
   }
 
