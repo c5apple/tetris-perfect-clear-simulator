@@ -50,7 +50,11 @@ export class PlayComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: { tsumo: string }) => {
+    this.route.params.subscribe((params: { lang: string, tsumo: string }) => {
+      // 言語設定
+      document.documentElement.lang = params.lang;
+      document.getElementById('my-manifest').setAttribute('href', 'manifest_' + params.lang + '.webmanifest');
+
       // ツモを取得
       this.getTsumo(params.tsumo);
 

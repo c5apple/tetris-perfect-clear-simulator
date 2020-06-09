@@ -20,6 +20,7 @@
   <link rel="icon" type="image/png" href="./assets/icons/icon-192x192.png">
   <style>
     html {
+      box-sizing: border-box;
       font-size: 62.5%;
     }
 
@@ -29,28 +30,25 @@
       padding: 0;
       text-align: center;
       font-size: 1.6em;
+      font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      letter-spacing: .01em;
       color: #606c76;
       background-image: url("./assets/img/bg/ringo.jpg");
       background-size: auto;
     }
 
-    h1.h4 {
+    .now-loading {
+      position: absolute;
+      top: calc(50%);
+      font-size: 1.6em;
       margin-top: 0;
-      font-size: 2.2rem;
-      letter-spacing: -0.08rem;
-      line-height: 1.35;
-      background: #000000;
-      border-bottom: 0.1rem solid #D1D1D1;
-      font-weight: 300;
-    }
-
-    h1.h4 a {
-      display: block;
-      color: #FFFFFF;
-      text-decoration: none;
+      margin-bottom: 2.5rem;
+      width: 100%;
     }
   </style>
-  <link rel="manifest" href="manifest.webmanifest">
+  <link id="my-manifest" rel="manifest" href="manifest_en.webmanifest">
   <meta name="theme-color" content="#000000">
   <link rel="prefetch" href="./assets/img/mino/i.png" as="image" type="image/png">
   <link rel="prefetch" href="./assets/img/mino/i-next.png" as="image" type="image/png">
@@ -71,15 +69,9 @@
 </head>
 
 <body>
-  <header>
-    <h1 class="h4"><a href="./">テトリス 開幕パフェシミュレーター</a></h1>
-  </header>
-  <main role="main" class="container">
-    <app-root>
-      <p>テトリスの開幕パーフェクトクリアを練習するサイトです。</p>
-      <p>Now Loading...</p>
-    </app-root>
-  </main>
+  <app-root>
+    <p class="now-loading">Now Loading...</p>
+  </app-root>
   <noscript>
     <p>JavaScriptを実行できないため、問題を再生できません。ブラウザの設定をオンにしていただくか、別の端末をご利用ください。</p>
   </noscript>
