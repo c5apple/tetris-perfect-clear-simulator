@@ -61,6 +61,11 @@ export class AppComponent implements OnInit {
         const title = ((titles.length > 0) ? titles.pop() + ' - ' : '') + appTitle;
         this.title.setTitle(title);
       });
+
+      // メタ設定
+      this.translate.get('説明文').subscribe(appDescription => {
+        this.meta.updateTag({ name: 'description', content: appDescription });
+      });
     });
   }
 
