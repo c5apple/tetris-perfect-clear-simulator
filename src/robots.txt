@@ -1,7 +1,10 @@
 User-agent: *
-Disallow: /play
-Disallow: /setting
-Disallow: /score
+Disallow: /en/play
+Disallow: /ja/play
+Disallow: /en/setting
+Disallow: /ja/setting
+Disallow: /en/score
+Disallow: /ja/score
 Allow: /
 
 Sitemap: https://games.banana-juice.com/tetris-perfect-clear-simulator/sitemap.xml
