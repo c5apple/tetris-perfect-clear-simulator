@@ -13,6 +13,7 @@ import { SettingComponent } from './setting/setting.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MyAdsenseModule } from './shared/component/my-adsense/my-adsense.module';
+import { HeaderComponent } from './shared/component/header/header.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -24,7 +25,8 @@ export function createTranslateLoader(http: HttpClient) {
     TopComponent,
     PlayComponent,
     ScoreComponent,
-    SettingComponent
+    SettingComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
