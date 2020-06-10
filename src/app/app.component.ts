@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
     const langNo = this.availableLangList.indexOf(lang);
     if (langNo === -1) {
       // デフォルト英語
-      return window.location.href = './en/';
+      return window.location.href = './en';
     }
     // 言語設定
     this.translate.setDefaultLang(lang);

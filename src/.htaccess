@@ -7,26 +7,21 @@ ErrorDocument 404 /tetris-perfect-clear-simulator/
   RewriteEngine On
 
   # 振り分け用の変数を初期化
-  RewriteRule .* - [E=X_IS_RENDERED_CONTENT:0]
   RewriteRule .* - [E=X_IS_CRAWLER_ACCESS:0]
-
-  # /en|ja/以下へのアクセスの場合、X_IS_RENDERED_CONTENTに1をセット、X_RENDERED_FILE_NAMEに(en|ja)を保存
-  RewriteCond %{REQUEST_URI} ^/(en|ja).*$
-  RewriteRule .* - [E=X_IS_RENDERED_CONTENT:1,E=X_RENDERED_FILE_NAME:%1]
 
   # SNSクローラーからのアクセスの場合、X_IS_CRAWLER_ACCESSに1をセット
   RewriteCond %{HTTP_USER_AGENT} (Twitterbot|facebookexternalhit)
   RewriteRule .* - [E=X_IS_CRAWLER_ACCESS:1]
 
-  # X_IS_RENDERED_CONTENT、X_IS_CRAWLER_ACCESSの値が共に1の場合リバースプロキシとして動作、静的HTMLを返却
-  RewriteCond %{ENV:X_IS_RENDERED_CONTENT} ^1$
+  # en以下へのアクセスの場合、静的HTMLを返却
   RewriteCond %{ENV:X_IS_CRAWLER_ACCESS} ^1$
-  RewriteRule .* https://games.banana-juice.com/tetris-perfect-clear-simulator/%{ENV:X_RENDERED_FILE_NAME}.html [P,L]
+  RewriteCond %{REQUEST_URI} ^(/tetris-perfect-clear-simulator/en).*$
+  RewriteRule .* https://games.banana-juice.com/tetris-perfect-clear-simulator/social_en.html [QSA,L]
 
-  # 上記ルールに該当せず、ファイル、ディレクトリが存在しなければ通常通りindex.html を返却する
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ index.html [L]
+  # ja以下へのアクセスの場合、静的HTMLを返却
+  RewriteCond %{ENV:X_IS_CRAWLER_ACCESS} ^1$
+  RewriteCond %{REQUEST_URI} ^(/tetris-perfect-clear-simulator/ja).*$
+  RewriteRule .* https://games.banana-juice.com/tetris-perfect-clear-simulator/social_ja.html [QSA,L]
 </IfModule>
 
 <IfModule mod_expires.c>

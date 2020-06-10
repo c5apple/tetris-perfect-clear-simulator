@@ -25,9 +25,9 @@
             "aot": false,
             "assets": [
               "src/.htaccess",
-              "src/en.html",
+              "src/social_en.html",
               "src/en_amp.html",
-              "src/ja.html",
+              "src/social_ja.html",
               "src/ja_amp.html",
               "src/favicon.ico",
               "src/assets",
@@ -103,9 +103,9 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/.htaccess",
-              "src/en.html",
+              "src/social_en.html",
               "src/en_amp.html",
-              "src/ja.html",
+              "src/social_ja.html",
               "src/ja_amp.html",
               "src/favicon.ico",
               "src/assets",
