@@ -94,6 +94,7 @@ export class AppComponent implements OnInit {
     document.documentElement.lang = this.availableHtmlLangList[langNo];
     document.getElementById('my-manifest').setAttribute('href', 'manifest_' + lang + '.webmanifest');
     document.getElementById('canonical').setAttribute('href', 'https://games.banana-juice.com/tetris-perfect-clear-simulator/' + lang);
+    document.getElementById('amphtml').setAttribute('href', 'https://games.banana-juice.com/tetris-perfect-clear-simulator/' + lang + '_amp.html');
   }
 
   /**

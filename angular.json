@@ -26,7 +26,9 @@
             "assets": [
               "src/.htaccess",
               "src/en.html",
+              "src/en_amp.html",
               "src/ja.html",
+              "src/ja_amp.html",
               "src/favicon.ico",
               "src/assets",
               "src/manifest_en.webmanifest",
@@ -102,7 +104,9 @@
             "assets": [
               "src/.htaccess",
               "src/en.html",
+              "src/en_amp.html",
               "src/ja.html",
+              "src/ja_amp.html",
               "src/favicon.ico",
               "src/assets",
               "src/manifest_en.webmanifest",
