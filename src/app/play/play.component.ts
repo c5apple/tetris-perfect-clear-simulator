@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateService, DefaultLangChangeEvent } from '@ngx-translate/core';
-import { TsumoService } from '../shared/service/tsumo.service';
+import { TranslateService } from '@ngx-translate/core';
+import { TsumoService } from 'shared/service/tsumo';
 import { Mino } from '../shared/service/mino';
 import { AnswerType } from '../shared/service/answer-type.enum';
 

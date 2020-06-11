@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Mino } from './mino';
-import { PerfectPattern } from './perfect-pattern';
-import { Tetofu } from './tetofu';
-import { AnswerType } from './answer-type.enum';
+import { Mino } from '../mino';
+import { PerfectPattern } from '../perfect-pattern';
+import { Tetofu } from '../tetofu';
+import { AnswerType } from '../answer-type.enum';
 
 /**
  * ツモサービス
