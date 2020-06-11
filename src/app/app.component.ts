@@ -13,6 +13,11 @@ import { GaService } from './shared/service/ga';
 })
 export class AppComponent implements OnInit {
 
+  /** サポート言語 */
+  private availableLangList = ['en', 'ja'];
+  /** サポートHTML言語 */
+  private availableHtmlLangList = ['en-US', 'ja-JP'];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -38,7 +43,9 @@ export class AppComponent implements OnInit {
       filter(event => event instanceof NavigationEnd),
       map(() => this.route),
       map(route => {
-        while (route.firstChild) route = route.firstChild;
+        while (route.firstChild) {
+          route = route.firstChild;
+        }
         return route;
       }),
       filter(route => route.outlet === 'primary'),
@@ -74,11 +81,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  /** サポート言語 */
-  private availableLangList = ['en', 'ja'];
-  /** サポートHTML言語 */
-  private availableHtmlLangList = ['en-US', 'ja-JP'];
-
   /**
    * 言語チェック
    */
@@ -88,13 +90,16 @@ export class AppComponent implements OnInit {
       // デフォルト英語
       return window.location.href = './en';
     }
+
+    const baseUrl = 'https://games.banana-juice.com/tetris-perfect-clear-simulator';
+
     // 言語設定
     this.translate.setDefaultLang(lang);
     this.translate.use(lang);
     document.documentElement.lang = this.availableHtmlLangList[langNo];
     document.getElementById('my-manifest').setAttribute('href', 'manifest_' + lang + '.webmanifest');
-    document.getElementById('canonical').setAttribute('href', 'https://games.banana-juice.com/tetris-perfect-clear-simulator/' + lang);
-    document.getElementById('amphtml').setAttribute('href', 'https://games.banana-juice.com/tetris-perfect-clear-simulator/amp_' + lang + '.html');
+    document.getElementById('canonical').setAttribute('href', baseUrl + '/' + lang);
+    document.getElementById('amphtml').setAttribute('href', baseUrl + '/amp_' + lang + '.html');
   }
 
   /**

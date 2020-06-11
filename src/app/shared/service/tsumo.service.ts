@@ -71,7 +71,7 @@ export class TsumoService {
     if (tsumo) {
       // ツモ指定
       this.currentTumo = [];
-      tsumo.split("").forEach(shape => {
+      tsumo.split('').forEach(shape => {
         this.currentTumo.push(new Mino(shape));
       });
     } else {
@@ -89,7 +89,9 @@ export class TsumoService {
     const noList = Mino.getAll();
 
     // シャッフル
-    let n = noList.length, t, i;
+    let n = noList.length;
+    let t: string;
+    let i: number;
     while (n) {
       i = Math.floor(Math.random() * n--);
       t = noList[n];
@@ -110,26 +112,26 @@ export class TsumoService {
    * パフェがあるかを取得する
    */
   public getAnswer(tsumo: string): PerfectPattern {
-    const pattern = this.perfectPattern2.find(pattern => pattern.tsumo === tsumo);
+    const pattern = this.perfectPattern2.find(p => p.tsumo === tsumo);
     if (pattern === undefined) {
       alert('りすくませんぱい「問題発生」');
-      throw new Error("Pattern Not Found!!");
+      throw new Error('Pattern Not Found!!');
     }
 
     // テト譜結合
     pattern.tetofu = [];
     if (pattern.answer === AnswerType.EXISTS) {
       pattern.answers.forEach(minos => {
-        const tetofu = this.tetofu2.find(pattern => pattern.tsumo === minos);
+        const tetofu = this.tetofu2.find(p => p.tsumo === minos);
         if (tetofu) {
           pattern.tetofu.push(tetofu.tetofu);
         } else {
           // テト譜が存在しないバグあり
           alert('りすくませんぱい「問題発生」');
           console.error({ ...pattern });
-          throw new Error("Tetofu Not Found!!");
+          throw new Error('Tetofu Not Found!!');
         }
-      })
+      });
     }
 
     return pattern;

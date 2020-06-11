@@ -9,7 +9,7 @@ import { SettingComponent } from './setting/setting.component';
 const routes: Routes = [
   { path: '', component: TopComponent },
   { path: ':lang', component: TopComponent },
-  { path: ':lang/home', component: TopComponent }, //PWA
+  { path: ':lang/home', component: TopComponent }, // PWA
   { path: ':lang/play', component: PlayComponent },
   { path: ':lang/play/:tsumo', component: PlayComponent },
   { path: ':lang/score', component: ScoreComponent },

@@ -19,7 +19,7 @@ export class Mino {
 
   /**
    * コンストラクタ
-   * @param shape
+   * @param shape 形('I', 'J', 'L', 'O', 'S', 'T', 'Z')
    */
   constructor(shape: string) {
     this.shape = shape;
