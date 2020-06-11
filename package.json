@@ -7,6 +7,7 @@
     "build": "ng build --prod --aot=true --base-href=/tetris-perfect-clear-simulator/",
     "test": "ng test",
     "lint": "ng lint",
+    "sasslint": "sass-lint -c .sass-lint.yml -q -v",
     "e2e": "ng e2e"
   },
   "private": true,
