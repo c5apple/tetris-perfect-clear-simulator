@@ -22,6 +22,10 @@ ErrorDocument 404 /tetris-perfect-clear-simulator/
   RewriteCond %{ENV:X_IS_CRAWLER_ACCESS} ^1$
   RewriteCond %{REQUEST_URI} ^(/tetris-perfect-clear-simulator/ja).*$
   RewriteRule .* https://games.banana-juice.com/tetris-perfect-clear-simulator/social_ja.html [QSA,L]
+
+  RewriteCond %{REQUEST_URI} ^/tetris-perfect-clear-simulator/en$ [OR]
+  RewriteCond %{REQUEST_URI} ^/tetris-perfect-clear-simulator/ja$
+  RewriteRule . /tetris-perfect-clear-simulator/index.html [L]
 </IfModule>
 
 <IfModule mod_expires.c>
