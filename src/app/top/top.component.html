@@ -4,5 +4,7 @@
   <p *ngIf="lang === 'ja'"><a routerLink="/en">{{ '英語版はこちら' | translate }}</a></p>
   <p *ngIf="lang === 'en'"><a routerLink="/ja">{{ '日本語版はこちら' | translate }}</a></p>
 
-  <p><a routerLink="play" class="button button-black button-outline" rel="nofollow" *ngIf="start">{{start}}</a></p>
+  <p>
+    <a routerLink="/{{lang}}/play" class="button button-black button-outline" rel="nofollow" *ngIf="start">{{start}}</a>
+  </p>
 </div>
