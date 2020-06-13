@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { TimerService } from 'shared/service/timer';
@@ -11,10 +11,14 @@ import { TimerService } from 'shared/service/timer';
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss']
 })
-export class TimerComponent implements OnInit {
+export class TimerComponent implements OnInit, OnDestroy {
 
   /** 残り時間 */
   time = 0;
+  @Output() timeChanges: EventEmitter<number> = new EventEmitter<number>();
+
+  /** タイムリミット */
+  limit = 0;
 
   /** タイマー */
   timer: Subscription;
@@ -31,13 +35,24 @@ export class TimerComponent implements OnInit {
     this.start();
   }
 
+  ngOnDestroy(): void {
+    this.stop();
+  }
+
   /**
    * 残り時間表記
    */
   get timeStr(): string {
-    const h = Math.floor(this.time / 60 / 60);
-    const m = Math.floor(this.time / 60 % 60);
-    const s = Math.floor(this.time % 60);
+    return this.format(this.time);
+  }
+
+  /**
+   * 時間フォーマット
+   */
+  private format(time: number) {
+    const h = Math.floor(time / 60 / 60);
+    const m = Math.floor(time / 60 % 60);
+    const s = Math.floor(time % 60);
 
     if (h >= 1) {
       return h + ':' + `0${m}`.slice(-2) + ':' + `0${s}`.slice(-2);
@@ -55,6 +70,7 @@ export class TimerComponent implements OnInit {
     this.timer = this.timerService.getTimer().subscribe(time => {
       // カウントダウン
       this.time--;
+      this.timeChanges.emit(this.time);
 
       // 終了
       if (this.time === 0) {
@@ -68,17 +84,5 @@ export class TimerComponent implements OnInit {
    */
   public stop() {
     this.timer.unsubscribe();
-  }
-
-  /**
-   * タイマー開始/終了
-   */
-  public toggle() {
-    if (this.isStoped) {
-      this.start();
-    } else {
-      this.stop();
-    }
-    this.isStoped = !this.isStoped;
   }
 }

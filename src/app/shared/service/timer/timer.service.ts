@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, interval } from 'rxjs';
+import { Observable, interval, BehaviorSubject, Subscription } from 'rxjs';
 
 /**
  * タイマーサービス
@@ -11,6 +11,12 @@ export class TimerService {
 
   /** 持ち時間 */
   private _timeLimit = 180;  // 3分
+
+  /** タイマー */
+  private timer: Subscription;
+
+  /** タイマー変更検知 */
+  private timerBehavior = new BehaviorSubject<number>(null);
 
   constructor() {
     // ローカルストレージから値を取得
@@ -36,9 +42,26 @@ export class TimerService {
   }
 
   public getTimer(): Observable<number> {
-    // 1秒間隔で経過秒数を返す
-    return interval(1000);
+    return this.timerBehavior;
   }
+
+  /**
+   * タイマー開始
+   */
+  public start(): void {
+    // 1秒間隔で経過秒数を返す
+    this.timer = interval(1000).subscribe(time => {
+      this.timerBehavior.next(time);
+    });
+  }
+
+  /**
+   * タイマー停止
+   */
+  public stop() {
+    this.timer.unsubscribe();
+  }
+
 
   /**
    * 初期値に戻す

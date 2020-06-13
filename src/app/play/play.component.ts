@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TsumoService } from 'shared/service/tsumo';
 import { Mino } from '../shared/service/mino';
 import { AnswerType } from '../shared/service/answer-type.enum';
+import { TimerService } from 'shared/service/timer';
 
 /**
  * プレイ画面
@@ -42,6 +43,9 @@ export class PlayComponent implements OnInit {
   /** テト譜 */
   tetofu: string[] = [];
 
+  /** 解答時間 */
+  time = 0;
+
   /**
    * デバッグか
    * (パスパラメータを渡すと指定したツモが引ける)
@@ -51,6 +55,7 @@ export class PlayComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tsumoService: TsumoService,
+    private timerService: TimerService,
     private translate: TranslateService
   ) { }
 
@@ -85,6 +90,9 @@ export class PlayComponent implements OnInit {
 
     // 開幕テンプレを取得
     this.templateNo = this.tsumoService.getTemplateNo();
+
+    // タイマー開始
+    this.timerService.start();
   }
 
   /**
@@ -96,6 +104,10 @@ export class PlayComponent implements OnInit {
       return;
     }
     this.answerShowed = true;
+
+    // タイマー停止
+    this.timerService.stop();
+    this.time = 0;
 
     // 正誤判定
     const tsumo = this.tsumo.map(mino => mino.shape).join('');
