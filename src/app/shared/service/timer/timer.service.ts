@@ -10,7 +10,7 @@ import { Observable, interval, BehaviorSubject, Subscription } from 'rxjs';
 export class TimerService {
 
   /** 持ち時間 */
-  private _timeLimit = 180;  // 3分
+  private _timeLimit = 18000;  // 3分
 
   /** タイマー */
   private timer: Subscription;
@@ -49,8 +49,11 @@ export class TimerService {
    * タイマー開始
    */
   public start(): void {
-    // 1秒間隔で経過秒数を返す
-    this.timer = interval(1000).subscribe(time => {
+    if (this.timer && !this.timer.closed) {
+      this.timer.unsubscribe();
+    }
+    // 0.01秒間隔で経過秒数を返す
+    this.timer = interval(10).subscribe(time => {
       this.timerBehavior.next(time);
     });
   }

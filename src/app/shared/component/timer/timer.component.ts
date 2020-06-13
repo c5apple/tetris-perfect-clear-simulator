@@ -50,17 +50,11 @@ export class TimerComponent implements OnInit, OnDestroy {
    * 時間フォーマット
    */
   private format(time: number) {
-    const h = Math.floor(time / 60 / 60);
-    const m = Math.floor(time / 60 % 60);
-    const s = Math.floor(time % 60);
+    const m = Math.floor(time / 60 / 100 % 60);
+    const s = Math.floor(time / 100 % 60);
+    const ms = Math.floor(time % 60);
 
-    if (h >= 1) {
-      return h + ':' + `0${m}`.slice(-2) + ':' + `0${s}`.slice(-2);
-    } else if (m !== 0) {
-      return '0:' + `0${m}`.slice(-2) + ':' + `0${s}`.slice(-2);
-    } else {
-      return '0:00:' + `0${s}`.slice(-2);
-    }
+    return `0${m}`.slice(-2) + ':' + `0${s}`.slice(-2) + ':' + `0${ms}`.slice(-2);
   }
 
   /**
