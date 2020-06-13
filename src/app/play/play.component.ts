@@ -46,6 +46,15 @@ export class PlayComponent implements OnInit {
   /** 解答時間 */
   time = 0;
 
+  /** 正解数 */
+  correctCount = 0;
+
+  /** 不正解数 */
+  wrongCount = 0;
+
+  /** 必要正解数 */
+  needCorrectCount = 0;
+
   /**
    * デバッグか
    * (パスパラメータを渡すと指定したツモが引ける)
@@ -117,12 +126,14 @@ export class PlayComponent implements OnInit {
       // 「ある」と解答
       if (answer.answer === AnswerType.EXISTS) {
         // 正解
+        this.correctCount++;
         this.answerMark1 = 1;
         this.translate.get('正解パフェあり').subscribe(answerMessage => {
           this.answerMessage = answerMessage;
         });
       } else {
         // 不正解
+        this.wrongCount++;
         this.answerMark1 = 2;
         this.answerMark3 = 1;
         this.translate.get('誤答パフェなし').subscribe(answerMessage => {
@@ -133,12 +144,14 @@ export class PlayComponent implements OnInit {
       // 「ない」と解答
       if (answer.answer === AnswerType.NONE) {
         // 正解
+        this.correctCount++;
         this.answerMark3 = 1;
         this.translate.get('正解パフェなし').subscribe(answerMessage => {
           this.answerMessage = answerMessage;
         });
       } else {
         // 不正解
+        this.wrongCount++;
         this.answerMark3 = 2;
         this.answerMark1 = 1;
         this.translate.get('誤答パフェあり').subscribe(answerMessage => {

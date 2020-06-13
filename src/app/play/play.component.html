@@ -13,9 +13,13 @@
 
   <div>
     <div class="h4 answer-message">
-      <span>{{answerMessage}}</span><br>
-      <!-- <app-stopwatch (timeChanges)="time=$event"></app-stopwatch> -->
-      <!-- <app-timer (timeChanges)="time=$event"></app-timer> -->
+      <p>{{answerMessage}}</p>
+      <!-- <p>
+        {{ '時間' | translate }}:&nbsp;<app-stopwatch (timeChanges)="time=$event"></app-stopwatch>
+      </p>
+      <p>
+        {{ '正解数' | translate }}:&nbsp;{{correctCount}}&nbsp;/&nbsp;{{needCorrectCount}}
+      </p> -->
     </div>
 
     <p style="margin-left: -50px">
@@ -42,11 +46,14 @@
           [disabled]="answerShowed">{{ 'いいえ' | translate }}</button>
       </span>
     </p>
-    <p>
+    <p *ngIf="!needCorrectCount || correctCount < needCorrectCount">
       <a *ngIf="isDebug" [routerLink]="['/', lang, 'play']"
         class="button button-black button-outline">{{ '次のツモ' | translate }}</a>
       <button *ngIf="!isDebug" type="buttton" class="button-black button-outline"
         (click)="getTsumo()">{{ '次のツモ' | translate }}</button>
+    </p>
+    <p *ngIf="needCorrectCount && needCorrectCount <= correctCount">
+      {{ 'おめでとう' | translate:{value:correctCount} }}
     </p>
   </div>
 

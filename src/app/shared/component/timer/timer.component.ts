@@ -52,7 +52,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   private format(time: number) {
     const m = Math.floor(time / 60 / 100 % 60);
     const s = Math.floor(time / 100 % 60);
-    const ms = Math.floor(time % 60);
+    const ms = Math.floor(time % 100);
 
     return `0${m}`.slice(-2) + ':' + `0${s}`.slice(-2) + ':' + `0${ms}`.slice(-2);
   }
