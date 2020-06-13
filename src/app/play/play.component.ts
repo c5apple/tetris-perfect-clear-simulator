@@ -70,6 +70,11 @@ export class PlayComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: { lang: string, tsumo: string }) => {
+      // プレイモード設定
+      if (location.pathname.indexOf('/play/20times') !== -1) {
+        this.needCorrectCount = 20;
+      }
+
       // ツモを取得
       this.getTsumo(params.tsumo);
       // 言語設定

@@ -14,12 +14,14 @@
   <div>
     <div class="h4 answer-message">
       <p>{{answerMessage}}</p>
-      <!-- <p>
-        {{ '時間' | translate }}:&nbsp;<app-stopwatch (timeChanges)="time=$event"></app-stopwatch>
-      </p>
-      <p>
-        {{ '正解数' | translate }}:&nbsp;{{correctCount}}&nbsp;/&nbsp;{{needCorrectCount}}
-      </p> -->
+      <ng-container *ngIf="0 < needCorrectCount">
+        <p>
+          {{ '時間' | translate }}:&nbsp;<app-stopwatch (timeChanges)="time=$event"></app-stopwatch>
+        </p>
+        <p>
+          {{ '正解数' | translate }}:&nbsp;{{correctCount}}&nbsp;/&nbsp;{{needCorrectCount}}
+        </p>
+      </ng-container>
     </div>
 
     <p style="margin-left: -50px">
