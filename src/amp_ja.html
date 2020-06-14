@@ -674,6 +674,22 @@
       background-size: auto;
     }
 
+    h1.h4 {
+      margin-top: 0;
+      font-size: 2.2rem;
+      letter-spacing: -0.08rem;
+      line-height: 1.35;
+      background: #000000;
+      border-bottom: 0.1rem solid #d1d1d1;
+      font-weight: 300;
+    }
+
+    h1.h4 a {
+      display: block;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
     .button-black.button-outline {
       background-color: #fff;
       color: black;
@@ -766,8 +782,20 @@
     <div class="animated fadeIn">
       <p>テトリスの開幕パーフェクトクリアを練習するサイトです。</p>
 
-      <p><a href="./en">英語版はこちら</a></p>
-      <p><a class="button button-black button-outline" rel="nofollow" href="./ja/play">スタート</a></p>
+      <p><a href="./en">Click here for English version</a></p>
+
+      <div class="select-mode">
+        <h2 class="h5">練習モード</h2>
+        <p class="description">制限時間なし、正解数制限なしでパフェの練習ができます。</p>
+        <p><a class="button button-black button-outline" rel="nofollow" href="./ja/play">スタート</a></p>
+        <h2 class="h5">タイムアタックモード</h2>
+        <p class="description">決められた正解数を獲得するまでにかかった時間を計ることができます。</p>
+        <p>
+          <a class="button button-black button-outline" rel="nofollow" href="./ja/play/10times">10回に挑戦</a>&nbsp;<br>
+          <a class="button button-black button-outline" rel="nofollow" href="./ja/play/20times">20回に挑戦</a>&nbsp;<br>
+          <a class="button button-black button-outline" rel="nofollow" href="./ja/play/40times">40回に挑戦</a>&nbsp;<br>
+        </p>
+      </div>
     </div>
   </main><br>
 
