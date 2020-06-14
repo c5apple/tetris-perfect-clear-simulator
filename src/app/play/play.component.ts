@@ -19,6 +19,9 @@ export class PlayComponent implements OnInit {
   /** 言語 */
   lang = '';
 
+  /** モード名 */
+  modeName: string;
+
   /** 開幕テンプレ */
   templateNo: number;
 
@@ -71,8 +74,17 @@ export class PlayComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: { lang: string, tsumo: string }) => {
       // プレイモード設定
-      if (location.pathname.indexOf('/play/20times') !== -1) {
+      if (location.pathname.indexOf('/play/10times') !== -1) {
+        this.needCorrectCount = 10;
+      } else if (location.pathname.indexOf('/play/20times') !== -1) {
         this.needCorrectCount = 20;
+      } else if (location.pathname.indexOf('/play/40times') !== -1) {
+        this.needCorrectCount = 40;
+      }
+      if (this.needCorrectCount) {
+        this.translate.get('タイムアタックモード').subscribe(title => this.modeName = title);
+      } else {
+        this.translate.get('練習モード').subscribe(title => this.modeName = title);
       }
 
       // ツモを取得
