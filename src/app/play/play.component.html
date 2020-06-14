@@ -1,18 +1,18 @@
 <div class="animated fadeIn">
   <div class="container">
     <div class="col1" *ngIf="templateNo">
-      <img src="./assets/img/template{{templateNo}}.png" width="300">
+      <img src="./assets/img/template{{templateNo}}.png" width="250">
     </div>
     <div class="col2" *ngIf="tsumo">
-      <div><img [src]="tsumo[0].imgUrlNext" width="66"></div>
-      <div><img [src]="tsumo[1].imgUrl" width="57"></div>
-      <div><img [src]="tsumo[2].imgUrl" width="57"></div>
-      <div><img [src]="tsumo[3].imgUrl" width="57"></div>
+      <div><img [src]="tsumo[0].imgUrlNext" [alt]="tsumo[0].shape" width="55"></div>
+      <div><img [src]="tsumo[1].imgUrl" [alt]="tsumo[1].shape" width="48"></div>
+      <div><img [src]="tsumo[2].imgUrl" [alt]="tsumo[2].shape" width="48"></div>
+      <div><img [src]="tsumo[3].imgUrl" [alt]="tsumo[3].shape" width="48"></div>
     </div>
   </div>
 
   <div>
-    <div class="h4 answer-message">
+    <div class="h5 answer-message">
       <p>{{answerMessage}}</p>
       <ng-container *ngIf="0 < needCorrectCount">
         <p>
@@ -70,7 +70,7 @@
     <tbody>
       <tr *ngFor="let minos of perfectMino; let i = index">
         <td *ngFor="let mino of minos">
-          <img [src]="mino.imgUrl" [alt]="mino.shape" width="57">
+          <img [src]="mino.imgUrl" [alt]="mino.shape" width="48">
         </td>
         <td>
           <a [href]="tetofu[i]" target="_blank" rel="nofollow noreferrer noopener"
