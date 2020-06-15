@@ -55,9 +55,15 @@
       <button *ngIf="!isDebug" type="buttton" class="button-black button-outline"
         (click)="getTsumo()">{{ '次のツモ' | translate }}</button>
     </p>
-    <p *ngIf="needCorrectCount && needCorrectCount <= correctCount">
-      {{ 'おめでとう' | translate:{value:correctCount} }}
-    </p>
+    <ng-container *ngIf="needCorrectCount && needCorrectCount <= correctCount">
+      <p>
+        {{ 'おめでとう' | translate:{value:correctCount} }}
+      </p>
+      <p>
+        <a (click)="retry()" class="button button-black button-outline">{{ 'もう一度' | translate }}</a>&nbsp;
+        <a href="./{{lang}}" class="button button-black button-outline">{{ 'メニューへ' | translate }}</a>&nbsp;
+      </p>
+    </ng-container>
   </div>
 
   <!-- パフェパターン表示 -->

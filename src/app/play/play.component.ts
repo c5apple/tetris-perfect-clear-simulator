@@ -185,4 +185,11 @@ export class PlayComponent implements OnInit {
       this.tetofu = answer.tetofu;
     }
   }
+
+  /**
+   * もう一度ボタン
+   */
+  retry() {
+    location.reload();
+  }
 }
