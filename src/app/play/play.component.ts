@@ -141,14 +141,6 @@ export class PlayComponent implements OnInit {
     // タイマー停止
     this.timerService.stop();
 
-    // 解答を記録
-    if (this.needCorrectCount) {
-      this.scoreService.setCorrect(this.templateNo, tsumo, buttonId, answer.answer, this.time - this.prevTime);
-    }
-
-    // 前回の時間を記録
-    this.prevTime = this.time;
-
     if (buttonId === AnswerType.EXISTS) {
       // 「ある」と解答
       if (answer.answer === AnswerType.EXISTS) {
@@ -194,6 +186,18 @@ export class PlayComponent implements OnInit {
       });
       this.tetofu = answer.tetofu;
     }
+
+    // 解答を記録
+    if (this.needCorrectCount) {
+      this.scoreService.setCorrect(this.templateNo, tsumo, buttonId, answer.answer, this.time - this.prevTime);
+
+      if (this.needCorrectCount <= this.correctCount) {
+        this.scoreService.setBestTime(this.needCorrectCount, this.time, this.wrongCount);
+      }
+    }
+
+    // 前回の時間を記録
+    this.prevTime = this.time;
   }
 
   /**

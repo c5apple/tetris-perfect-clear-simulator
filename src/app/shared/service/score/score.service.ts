@@ -19,11 +19,21 @@ export class ScoreService {
     time: number
   }[] = [];
 
+  /**
+   * 最速記録
+   */
+  private bestTimeList: {
+    needCorrectCount: number,
+    time: number,
+    wrongCount: number
+  }[] = [];
+
   /** 何件まで記録するか */
   public ANSWERED_LIMIT = 1000;
 
   constructor() {
     this.answeredList = JSON.parse(localStorage.getItem('answeredList')) || [];
+    this.bestTimeList = JSON.parse(localStorage.getItem('bestTimeList')) || [];
   }
 
   /**
@@ -41,7 +51,7 @@ export class ScoreService {
     // 直近の件数で絞る
     if (this.ANSWERED_LIMIT < this.answeredList.length) {
       this.answeredList = this.answeredList.slice(1, this.ANSWERED_LIMIT);
-    };;
+    }
 
     localStorage.setItem('answeredList', JSON.stringify(this.answeredList));
   }
@@ -176,5 +186,38 @@ export class ScoreService {
       answer['mino'] = mino;
       return answer;
     });
+  }
+
+  /**
+   * 最速記録を設定する
+   */
+  public setBestTime(needCorrectCount: number, time: number, wrongCount: number): void {
+    let index = this.bestTimeList.findIndex(best => best.needCorrectCount === needCorrectCount);
+    const best = {
+      needCorrectCount: needCorrectCount,
+      time: time,
+      wrongCount: wrongCount
+    };
+    if (index === -1) {
+      this.bestTimeList.push(best);
+    } else if (time < this.bestTimeList[index].time) {
+      this.bestTimeList[index] = best;
+    }
+    localStorage.setItem('bestTimeList', JSON.stringify(this.bestTimeList));
+  }
+
+  /**
+   * 最速記録を取得する
+   */
+  public getBestTime(needCorrectCount: number): {
+    needCorrectCount: number,
+    time: number,
+    wrongCount: number
+  } {
+    return this.bestTimeList.find(best => best.needCorrectCount === needCorrectCount) || {
+      needCorrectCount: needCorrectCount,
+      time: 0,
+      wrongCount: 0
+    };
   }
 }

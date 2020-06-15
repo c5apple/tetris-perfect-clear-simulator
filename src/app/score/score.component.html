@@ -23,6 +23,22 @@
       </dl>
     </div>
 
+    <h2 class="h5">{{ 'ベストタイム' | translate }}</h2>
+    <div class="description">
+      <dl *ngIf="bestTime10">
+        <dt>{{ '10回に挑戦' | translate }}:</dt>
+        <dd>{{ format(bestTime10.time) }}&nbsp;(×:{{bestTime10.wrongCount}})</dd>
+      </dl>
+      <dl *ngIf="bestTime20">
+        <dt>{{ '20回に挑戦' | translate }}:</dt>
+        <dd>{{ format(bestTime20.time) }}&nbsp;(×:{{bestTime20.wrongCount}})</dd>
+      </dl>
+      <dl *ngIf="bestTime40">
+        <dt>{{ '40回に挑戦' | translate }}:</dt>
+        <dd>{{ format(bestTime40.time) }}&nbsp;(×:{{bestTime40.wrongCount}})</dd>
+      </dl>
+    </div>
+
     <h2 class="h5">{{ '得意なツモ' | translate }}</h2>
     <p class="description" *ngIf="0 === correctList.length">{{ 'なし' | translate }}</p>
     <table *ngIf="0 < correctList.length">

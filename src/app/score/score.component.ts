@@ -30,6 +30,15 @@ export class ScoreComponent implements OnInit {
   /** 平均解答時間 */
   averageAnswerTime: string;
 
+  /** 最速タイム 10回 */
+  bestTime10: { needCorrectCount: number; time: number; wrongCount: number; };
+
+  /** 最速タイム 20回 */
+  bestTime20: { needCorrectCount: number; time: number; wrongCount: number; };
+
+  /** 最速タイム 40回 */
+  bestTime40: { needCorrectCount: number; time: number; wrongCount: number; };
+
   /** 得意なツモ */
   correctList: {}[] = [];
 
@@ -55,13 +64,17 @@ export class ScoreComponent implements OnInit {
 
       this.correctList = this.scoreService.getMostCorrectList();
       this.wrongList = this.scoreService.getMostWrongList();
+
+      this.bestTime10 = this.scoreService.getBestTime(10);
+      this.bestTime20 = this.scoreService.getBestTime(20);
+      this.bestTime40 = this.scoreService.getBestTime(40);
     });
   }
 
   /**
    * 時間フォーマット
    */
-  private format(time: number) {
+  public format(time: number) {
     const m = Math.floor(time / 60 / 100 % 60);
     const s = Math.floor(time / 100 % 60);
     const ms = Math.floor(time % 100);

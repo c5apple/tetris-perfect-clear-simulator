@@ -6,7 +6,7 @@
   "練習モード": "Practice Mode",
   "練習モード説明": "You can practice All Clear without any limitation of time and number of correct answers.",
   "スタート": "PLAY",
-  "タイムアタックモード": "Speedrun mode",
+  "タイムアタックモード": "Speedrun Mode",
   "タイムアタックモード説明": "Clear as fast as possible.",
   "10回に挑戦": "PLAY 10 CORRECT",
   "20回に挑戦": "PLAY 20 CORRECT",
@@ -35,6 +35,7 @@
   "スコア説明": "View your play records.",
   "見る": "VIEW",
   "平均解答時間": "Average answer time",
+  "ベストタイム": "Best time",
   "得意なツモ": "Goot at",
   "苦手なツモ": "Bad at",
   "なし": "nothing"
