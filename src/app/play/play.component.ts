@@ -5,6 +5,7 @@ import { TsumoService } from 'shared/service/tsumo';
 import { Mino } from '../shared/service/mino';
 import { AnswerType } from '../shared/service/answer-type.enum';
 import { TimerService } from 'shared/service/timer';
+import { ScoreService } from 'shared/service/score';
 
 /**
  * プレイ画面
@@ -48,6 +49,7 @@ export class PlayComponent implements OnInit {
 
   /** 解答時間 */
   time = 0;
+  prevTime = 0;
 
   /** 正解数 */
   correctCount = 0;
@@ -68,7 +70,8 @@ export class PlayComponent implements OnInit {
     private route: ActivatedRoute,
     private tsumoService: TsumoService,
     private timerService: TimerService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private scoreService: ScoreService
   ) { }
 
   ngOnInit() {
@@ -131,13 +134,20 @@ export class PlayComponent implements OnInit {
     }
     this.answerShowed = true;
 
-    // タイマー停止
-    this.timerService.stop();
-    this.time = 0;
-
     // 正誤判定
     const tsumo = this.tsumo.map(mino => mino.shape).join('');
     const answer = this.tsumoService.getAnswer(tsumo);
+
+    // タイマー停止
+    this.timerService.stop();
+
+    // 解答を記録
+    if (this.needCorrectCount) {
+      this.scoreService.setCorrect(this.templateNo, tsumo, buttonId, answer.answer, this.time - this.prevTime);
+    }
+
+    // 前回の時間を記録
+    this.prevTime = this.time;
 
     if (buttonId === AnswerType.EXISTS) {
       // 「ある」と解答

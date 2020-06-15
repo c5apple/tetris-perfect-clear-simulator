@@ -5,7 +5,7 @@
 }
 .h5 {
   font-size: 1.8rem;
-  letter-spacing: -.05rem;
+  letter-spacing: -0.05rem;
   line-height: 1.5;
 }
 .button-black {
@@ -39,4 +39,59 @@
   height: 2.8rem;
   line-height: 2.8rem;
   padding: 0 1.5rem;
+}
+.mode-name {
+  margin-bottom: 2.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+.select-mode {
+  display: inline-block;
+  width: 80%;
+  max-width: 500px;
+  margin-bottom: 1rem;
+  padding: 0 0 0.5rem;
+  border-radius: 0.4rem;
+  background: rgba(255, 255, 255, 0.5);
+
+  h2,
+  h3 {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+
+    &:first-child {
+      border-radius: 0.4rem 0.4rem 0 0;
+    }
+  }
+
+  .description {
+    margin-top: 0;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-bottom: 2.5rem;
+    text-align: left;
+  }
+
+  br {
+    display: initial;
+  }
+  /* Larger than mobile screen */
+  @media (min-width: 40rem) {
+    br {
+      display: none;
+    }
+  }
+}
+table {
+  display: table;
+  margin: 0 auto;
+  overflow-x: initial;
+  max-width: 500px;
+  border-radius: 0.4rem;
+  text-align: center;
+  background: #fff;
+}
+td,
+th {
+  padding: 0.8rem 1rem;
 }
