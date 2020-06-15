@@ -1,1 +1,83 @@
-<p>score works!</p>
+<div class="animated fadeIn">
+  <h2 class="h5 mode-name">{{ 'スコア' | translate }}</h2>
+  <p class="description">{{ 'スコア説明' | translate:{value:answerdLimit.toLocaleString()} }}</p>
+
+  <div class="select-mode">
+    <h2 class="h5">{{ 'スコア' | translate }}</h2>
+    <div class="description">
+      <dl>
+        <dt>{{ '正解率' | translate }}:</dt>
+        <dd>{{ correctRate }}%</dd>
+      </dl>
+      <dl>
+        <dt>{{ '正解数' | translate }}:</dt>
+        <dd>{{ correctCount }}</dd>
+      </dl>
+      <dl>
+        <dt>{{ '誤答数' | translate }}:</dt>
+        <dd>{{ wrongCount }}</dd>
+      </dl>
+      <dl>
+        <dt>{{ '平均解答時間' | translate }}:</dt>
+        <dd>{{ averageAnswerTime }}</dd>
+      </dl>
+    </div>
+
+    <h2 class="h5">{{ 'ベストタイム' | translate }}</h2>
+    <div class="description">
+      <dl *ngIf="bestTime10">
+        <dt>{{ '10回に挑戦' | translate }}:</dt>
+        <dd>{{ format(bestTime10.time) }}&nbsp;(×:{{bestTime10.wrongCount}})</dd>
+      </dl>
+      <dl *ngIf="bestTime20">
+        <dt>{{ '20回に挑戦' | translate }}:</dt>
+        <dd>{{ format(bestTime20.time) }}&nbsp;(×:{{bestTime20.wrongCount}})</dd>
+      </dl>
+      <dl *ngIf="bestTime40">
+        <dt>{{ '40回に挑戦' | translate }}:</dt>
+        <dd>{{ format(bestTime40.time) }}&nbsp;(×:{{bestTime40.wrongCount}})</dd>
+      </dl>
+    </div>
+
+    <h2 class="h5">{{ '得意なツモ' | translate }}</h2>
+    <p class="description" *ngIf="0 === correctList.length">{{ 'なし' | translate }}</p>
+    <table *ngIf="0 < correctList.length">
+      <thead>
+        <th>{{ '一つ目' | translate}}</th>
+        <th>{{ '二つ目' | translate}}</th>
+        <th>{{ '三つ目' | translate}}</th>
+        <th>{{ '四つ目' | translate}}</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let answer of correctList">
+          <td *ngFor="let mino of answer.mino">
+            <img [src]="mino.imgUrl" [alt]="mino.shape" width="48">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="h5">{{ '苦手なツモ' | translate }}</h2>
+    <p class="description" *ngIf="0 === wrongList.length">{{ 'なし' | translate }}</p>
+    <table *ngIf="0 < wrongList.length">
+      <thead>
+        <th>{{ '一つ目' | translate}}</th>
+        <th>{{ '二つ目' | translate}}</th>
+        <th>{{ '三つ目' | translate}}</th>
+        <th>{{ '四つ目' | translate}}</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let answer of wrongList">
+          <td *ngFor="let mino of answer.mino">
+            <img [src]="mino.imgUrl" [alt]="mino.shape" width="48">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+
+  <p>
+    <a [routerLink]="['/', lang]" class="button button-black button-outline">{{ 'メニューへ' | translate }}</a>&nbsp;
+  </p>
+</div>

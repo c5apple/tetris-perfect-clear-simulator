@@ -10,7 +10,7 @@ import { Observable, interval, BehaviorSubject, Subscription } from 'rxjs';
 export class TimerService {
 
   /** 持ち時間 */
-  private _timeLimit = 18000;  // 3分
+  private _timeLimit = 60 * 5 * 100;  // 5分
 
   /** タイマー */
   private timer: Subscription;

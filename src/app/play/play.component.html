@@ -1,5 +1,5 @@
 <div class="animated fadeIn">
-  <div class="mode-name">{{modeName}}</div>
+  <h2 class="h5 mode-name">{{modeName}}</h2>
   <div class="container">
     <div class="col1" *ngIf="templateNo">
       <img src="./assets/img/template{{templateNo}}.png" width="250">
@@ -88,4 +88,8 @@
     </tbody>
   </table>
   <br>
+
+  <p>
+    <a [routerLink]="['/', lang]" class="button button-black button-outline">{{ 'メニューへ' | translate }}</a>&nbsp;
+  </p>
 </div>

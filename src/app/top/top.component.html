@@ -22,4 +22,14 @@
         rel="nofollow">{{ '40回に挑戦' | translate }}</a>&nbsp;<br>
     </p>
   </div>
+  <br>
+
+  <div class="select-mode" *ngIf="start">
+    <h2 class="h5">{{ 'スコア' | translate }}</h2>
+    <p class="description">{{ 'スコア説明' | translate:{value:answerdLimit.toLocaleString()} }}</p>
+    <p>
+      <a routerLink="/{{lang}}/score" class="button button-black button-outline"
+        rel="nofollow">{{ '見る' | translate }}</a>
+    </p>
+  </div>
 </div>

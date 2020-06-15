@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService, DefaultLangChangeEvent } from '@ngx-translate/core';
+import { ScoreService } from 'shared/service/score';
 
 /**
  * トップ画面
@@ -21,9 +22,13 @@ export class TopComponent implements OnInit {
   /** スタートボタン */
   start = '';
 
+  /** 直近の件数 */
+  answerdLimit = 0;
+
   constructor(
     private route: ActivatedRoute,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private scoreService: ScoreService
   ) { }
 
   ngOnInit() {
@@ -37,6 +42,8 @@ export class TopComponent implements OnInit {
         this.translate.get('スタート').subscribe(start => {
           this.start = start;
         });
+
+        this.answerdLimit = this.scoreService.ANSWERED_LIMIT;
       }
     });
   }
