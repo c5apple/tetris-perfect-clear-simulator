@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TsumoService } from 'shared/service/tsumo';
 import { Mino } from '../shared/service/mino';
 import { AnswerType } from '../shared/service/answer-type.enum';
+import { TimerService } from 'shared/service/timer';
 
 /**
  * プレイ画面
@@ -17,6 +18,9 @@ export class PlayComponent implements OnInit {
 
   /** 言語 */
   lang = '';
+
+  /** モード名 */
+  modeName: string;
 
   /** 開幕テンプレ */
   templateNo: number;
@@ -42,6 +46,18 @@ export class PlayComponent implements OnInit {
   /** テト譜 */
   tetofu: string[] = [];
 
+  /** 解答時間 */
+  time = 0;
+
+  /** 正解数 */
+  correctCount = 0;
+
+  /** 不正解数 */
+  wrongCount = 0;
+
+  /** 必要正解数 */
+  needCorrectCount = 0;
+
   /**
    * デバッグか
    * (パスパラメータを渡すと指定したツモが引ける)
@@ -51,11 +67,26 @@ export class PlayComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tsumoService: TsumoService,
+    private timerService: TimerService,
     private translate: TranslateService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: { lang: string, tsumo: string }) => {
+      // プレイモード設定
+      if (location.pathname.indexOf('/play/10times') !== -1) {
+        this.needCorrectCount = 10;
+      } else if (location.pathname.indexOf('/play/20times') !== -1) {
+        this.needCorrectCount = 20;
+      } else if (location.pathname.indexOf('/play/40times') !== -1) {
+        this.needCorrectCount = 40;
+      }
+      if (this.needCorrectCount) {
+        this.translate.get('タイムアタックモード').subscribe(title => this.modeName = title);
+      } else {
+        this.translate.get('練習モード').subscribe(title => this.modeName = title);
+      }
+
       // ツモを取得
       this.getTsumo(params.tsumo);
       // 言語設定
@@ -85,6 +116,9 @@ export class PlayComponent implements OnInit {
 
     // 開幕テンプレを取得
     this.templateNo = this.tsumoService.getTemplateNo();
+
+    // タイマー開始
+    this.timerService.start();
   }
 
   /**
@@ -97,6 +131,10 @@ export class PlayComponent implements OnInit {
     }
     this.answerShowed = true;
 
+    // タイマー停止
+    this.timerService.stop();
+    this.time = 0;
+
     // 正誤判定
     const tsumo = this.tsumo.map(mino => mino.shape).join('');
     const answer = this.tsumoService.getAnswer(tsumo);
@@ -105,12 +143,14 @@ export class PlayComponent implements OnInit {
       // 「ある」と解答
       if (answer.answer === AnswerType.EXISTS) {
         // 正解
+        this.correctCount++;
         this.answerMark1 = 1;
         this.translate.get('正解パフェあり').subscribe(answerMessage => {
           this.answerMessage = answerMessage;
         });
       } else {
         // 不正解
+        this.wrongCount++;
         this.answerMark1 = 2;
         this.answerMark3 = 1;
         this.translate.get('誤答パフェなし').subscribe(answerMessage => {
@@ -121,12 +161,14 @@ export class PlayComponent implements OnInit {
       // 「ない」と解答
       if (answer.answer === AnswerType.NONE) {
         // 正解
+        this.correctCount++;
         this.answerMark3 = 1;
         this.translate.get('正解パフェなし').subscribe(answerMessage => {
           this.answerMessage = answerMessage;
         });
       } else {
         // 不正解
+        this.wrongCount++;
         this.answerMark3 = 2;
         this.answerMark1 = 1;
         this.translate.get('誤答パフェあり').subscribe(answerMessage => {
@@ -142,5 +184,12 @@ export class PlayComponent implements OnInit {
       });
       this.tetofu = answer.tetofu;
     }
+  }
+
+  /**
+   * もう一度ボタン
+   */
+  retry() {
+    location.reload();
   }
 }

@@ -1,10 +1,25 @@
 <div class="animated fadeIn">
-  <p>{{description}}</p>
+  <p class="description">{{description}}</p>
 
   <p *ngIf="lang === 'ja'"><a routerLink="/en">{{ '英語版はこちら' | translate }}</a></p>
   <p *ngIf="lang === 'en'"><a routerLink="/ja">{{ '日本語版はこちら' | translate }}</a></p>
 
-  <p>
-    <a routerLink="/{{lang}}/play" class="button button-black button-outline" rel="nofollow" *ngIf="start">{{start}}</a>
-  </p>
+  <div class="select-mode" *ngIf="start">
+    <h2 class="h5">{{ '練習モード' | translate }}</h2>
+    <p class="description">{{ '練習モード説明' | translate }}</p>
+    <p>
+      <a routerLink="/{{lang}}/play" class="button button-black button-outline" rel="nofollow">{{start}}</a>
+    </p>
+
+    <h2 class="h5">{{ 'タイムアタックモード' | translate }}</h2>
+    <p class="description">{{ 'タイムアタックモード説明' | translate }}</p>
+    <p>
+      <a routerLink="/{{lang}}/play/10times" class="button button-black button-outline"
+        rel="nofollow">{{ '10回に挑戦' | translate }}</a>&nbsp;<br>
+      <a routerLink="/{{lang}}/play/20times" class="button button-black button-outline"
+        rel="nofollow">{{ '20回に挑戦' | translate }}</a>&nbsp;<br>
+      <a routerLink="/{{lang}}/play/40times" class="button button-black button-outline"
+        rel="nofollow">{{ '40回に挑戦' | translate }}</a>&nbsp;<br>
+    </p>
+  </div>
 </div>

@@ -11,6 +11,9 @@ const routes: Routes = [
   { path: ':lang', component: TopComponent },
   { path: ':lang/home', component: TopComponent }, // PWA
   { path: ':lang/play', component: PlayComponent },
+  { path: ':lang/play/10times', component: PlayComponent },
+  { path: ':lang/play/20times', component: PlayComponent },
+  { path: ':lang/play/40times', component: PlayComponent },
   { path: ':lang/play/:tsumo', component: PlayComponent },
   { path: ':lang/score', component: ScoreComponent },
   { path: ':lang/setting', component: SettingComponent },

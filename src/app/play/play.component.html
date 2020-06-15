@@ -1,18 +1,29 @@
 <div class="animated fadeIn">
+  <div class="mode-name">{{modeName}}</div>
   <div class="container">
     <div class="col1" *ngIf="templateNo">
-      <img src="./assets/img/template{{templateNo}}.png" width="300">
+      <img src="./assets/img/template{{templateNo}}.png" width="250">
     </div>
     <div class="col2" *ngIf="tsumo">
-      <div><img [src]="tsumo[0].imgUrlNext" width="66"></div>
-      <div><img [src]="tsumo[1].imgUrl" width="57"></div>
-      <div><img [src]="tsumo[2].imgUrl" width="57"></div>
-      <div><img [src]="tsumo[3].imgUrl" width="57"></div>
+      <div><img [src]="tsumo[0].imgUrlNext" [alt]="tsumo[0].shape" width="55"></div>
+      <div><img [src]="tsumo[1].imgUrl" [alt]="tsumo[1].shape" width="48"></div>
+      <div><img [src]="tsumo[2].imgUrl" [alt]="tsumo[2].shape" width="48"></div>
+      <div><img [src]="tsumo[3].imgUrl" [alt]="tsumo[3].shape" width="48"></div>
     </div>
   </div>
 
   <div>
-    <p class="h4 answer-message">{{answerMessage}}</p>
+    <div class="h5 answer-message">
+      <p>{{answerMessage}}</p>
+      <ng-container *ngIf="0 < needCorrectCount">
+        <p>
+          {{ '時間' | translate }}:&nbsp;<app-stopwatch (timeChanges)="time=$event"></app-stopwatch>
+        </p>
+        <p>
+          {{ '正解数' | translate }}:&nbsp;{{correctCount}}&nbsp;/&nbsp;{{needCorrectCount}}
+        </p>
+      </ng-container>
+    </div>
 
     <p style="margin-left: -50px">
       <span>
@@ -38,12 +49,21 @@
           [disabled]="answerShowed">{{ 'いいえ' | translate }}</button>
       </span>
     </p>
-    <p>
+    <p *ngIf="!needCorrectCount || correctCount < needCorrectCount">
       <a *ngIf="isDebug" [routerLink]="['/', lang, 'play']"
         class="button button-black button-outline">{{ '次のツモ' | translate }}</a>
       <button *ngIf="!isDebug" type="buttton" class="button-black button-outline"
         (click)="getTsumo()">{{ '次のツモ' | translate }}</button>
     </p>
+    <ng-container *ngIf="needCorrectCount && needCorrectCount <= correctCount">
+      <p>
+        {{ 'おめでとう' | translate:{value:correctCount} }}
+      </p>
+      <p>
+        <a (click)="retry()" class="button button-black button-outline">{{ 'もう一度' | translate }}</a>&nbsp;
+        <a href="./{{lang}}" class="button button-black button-outline">{{ 'メニューへ' | translate }}</a>&nbsp;
+      </p>
+    </ng-container>
   </div>
 
   <!-- パフェパターン表示 -->
@@ -57,7 +77,7 @@
     <tbody>
       <tr *ngFor="let minos of perfectMino; let i = index">
         <td *ngFor="let mino of minos">
-          <img [src]="mino.imgUrl" [alt]="mino.shape" width="57">
+          <img [src]="mino.imgUrl" [alt]="mino.shape" width="48">
         </td>
         <td>
           <a [href]="tetofu[i]" target="_blank" rel="nofollow noreferrer noopener"
