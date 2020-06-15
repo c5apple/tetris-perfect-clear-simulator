@@ -16,6 +16,7 @@ import { MyAdsenseModule } from './shared/component/my-adsense/my-adsense.module
 import { HeaderComponent } from './shared/component/header/header.component';
 import { TimerComponent } from './shared/component/timer/timer.component';
 import { StopwatchComponent } from './shared/component/stopwatch/stopwatch.component';
+import { FooterComponent } from './shared/component/footer/footer.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -30,7 +31,8 @@ export function createTranslateLoader(http: HttpClient) {
     SettingComponent,
     HeaderComponent,
     TimerComponent,
-    StopwatchComponent
+    StopwatchComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
