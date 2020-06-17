@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ScoreService } from 'shared/service/score';
 
 /**
@@ -47,6 +48,7 @@ export class ScoreComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private translate: TranslateService,
     private scoreService: ScoreService
   ) { }
 
@@ -80,5 +82,17 @@ export class ScoreComponent implements OnInit {
     const ms = Math.floor(time % 100);
 
     return `0${m}`.slice(-2) + ':' + `0${s}`.slice(-2) + ':' + `0${ms}`.slice(-2);
+  }
+
+  /**
+   * リセットボタン
+   */
+  public reset(): void {
+    this.translate.get('リセット確認').subscribe(message => {
+      if (window.confirm(message)) {
+        this.scoreService.reset();
+        window.location.reload();
+      }
+    });
   }
 }

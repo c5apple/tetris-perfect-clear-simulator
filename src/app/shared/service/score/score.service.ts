@@ -37,6 +37,14 @@ export class ScoreService {
   }
 
   /**
+  * 記録をリセットする
+  */
+  public reset(): void {
+    localStorage.removeItem('answeredList');
+    localStorage.removeItem('bestTimeList');
+  }
+
+  /**
    * 解答を記録する
    */
   public setCorrect(templateNo: number, tsumo: string, buttonId: AnswerType, answer: AnswerType, time: number): void {

@@ -38,5 +38,7 @@
   "ベストタイム": "Best time",
   "得意なツモ": "Goot at",
   "苦手なツモ": "Bad at",
-  "なし": "nothing"
+  "なし": "nothing",
+  "リセット": "RESET THE STATS",
+  "リセット確認": "Do you want to reset the stats?"
 }
