@@ -11,6 +11,7 @@
           "/index.html",
           "/manifest_en.webmanifest",
           "/manifest_ja.webmanifest",
+          "/manifest_ko.webmanifest",
           "/*.css",
           "/*.js"
         ]

@@ -14,9 +14,9 @@ import { GaService } from './shared/service/ga';
 export class AppComponent implements OnInit {
 
   /** サポート言語 */
-  private availableLangList = ['en', 'ja'];
+  private availableLangList = ['en', 'ja', 'ko'];
   /** サポートHTML言語 */
-  private availableHtmlLangList = ['en-US', 'ja-JP'];
+  private availableHtmlLangList = ['en-US', 'ja-JP', 'ko-KR'];
 
   constructor(
     private route: ActivatedRoute,

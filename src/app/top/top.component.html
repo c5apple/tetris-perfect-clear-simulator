@@ -1,8 +1,9 @@
 <div class="animated fadeIn">
   <p class="description">{{description}}</p>
 
-  <p *ngIf="lang === 'ja'"><a routerLink="/en">{{ '英語版はこちら' | translate }}</a></p>
-  <p *ngIf="lang === 'en'"><a routerLink="/ja">{{ '日本語版はこちら' | translate }}</a></p>
+  <p *ngIf="lang !== 'en'"><a routerLink="/en">{{ '英語版はこちら' | translate }}</a></p>
+  <p *ngIf="lang !== 'ja'"><a routerLink="/ja">{{ '日本語版はこちら' | translate }}</a></p>
+  <p *ngIf="lang !== 'ko'"><a routerLink="/ko">{{ '韓国語版はこちら' | translate }}</a></p>
 
   <div class="select-mode" *ngIf="start">
     <h2 class="h5">{{ '練習モード' | translate }}</h2>
