@@ -10,7 +10,7 @@ ErrorDocument 404 /tetris-perfect-clear-simulator/
   RewriteRule .* - [E=X_IS_CRAWLER_ACCESS:0]
 
   # SNSクローラーからのアクセスの場合、X_IS_CRAWLER_ACCESSに1をセット
-  RewriteCond %{HTTP_USER_AGENT} (Twitterbot|facebookexternalhit)
+  RewriteCond %{HTTP_USER_AGENT} (Twitterbot|facebookexternalhit|Slackbot)
   RewriteRule .* - [E=X_IS_CRAWLER_ACCESS:1]
 
   # en以下へのアクセスの場合、静的HTMLを返却
