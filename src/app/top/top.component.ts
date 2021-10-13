@@ -12,7 +12,6 @@ import { ScoreService } from 'shared/service/score';
   styleUrls: ['./top.component.scss']
 })
 export class TopComponent implements OnInit {
-
   /** 言語 */
   lang = '';
 
@@ -29,17 +28,17 @@ export class TopComponent implements OnInit {
     private route: ActivatedRoute,
     private translate: TranslateService,
     private scoreService: ScoreService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: { lang: string }) => {
       this.lang = params.lang;
 
       if (this.translate.getDefaultLang()) {
-        this.translate.get('説明文').subscribe(description => {
+        this.translate.get('説明文').subscribe((description) => {
           this.description = description;
         });
-        this.translate.get('スタート').subscribe(start => {
+        this.translate.get('スタート').subscribe((start) => {
           this.start = start;
         });
 
@@ -47,5 +46,4 @@ export class TopComponent implements OnInit {
       }
     });
   }
-
 }

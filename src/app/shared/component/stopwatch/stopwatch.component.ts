@@ -1,18 +1,23 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Output,
+  EventEmitter,
+} from "@angular/core";
+import { Subscription } from "rxjs";
 
-import { TimerService } from 'shared/service/timer';
+import { TimerService } from "shared/service/timer";
 
 /**
  * ストップウォッチコンポーネント
  */
 @Component({
-  selector: 'app-stopwatch',
-  templateUrl: './stopwatch.component.html',
-  styleUrls: ['./stopwatch.component.scss']
+  selector: "app-stopwatch",
+  templateUrl: "./stopwatch.component.html",
+  styleUrls: ["./stopwatch.component.scss"],
 })
 export class StopwatchComponent implements OnInit, OnDestroy {
-
   /** 現在の時間 */
   time = 0;
   @Output() timeChanges: EventEmitter<number> = new EventEmitter<number>();
@@ -26,7 +31,7 @@ export class StopwatchComponent implements OnInit, OnDestroy {
   /** 停止中か */
   isStoped: boolean;
 
-  constructor(private timerService: TimerService) { }
+  constructor(private timerService: TimerService) {}
 
   ngOnInit() {
     // 持ち時間設定
@@ -50,18 +55,20 @@ export class StopwatchComponent implements OnInit, OnDestroy {
    * 時間フォーマット
    */
   private format(time: number) {
-    const m = Math.floor(time / 60 / 100 % 60);
-    const s = Math.floor(time / 100 % 60);
+    const m = Math.floor((time / 60 / 100) % 60);
+    const s = Math.floor((time / 100) % 60);
     const ms = Math.floor(time % 100);
 
-    return `0${m}`.slice(-2) + ':' + `0${s}`.slice(-2) + ':' + `0${ms}`.slice(-2);
+    return (
+      `0${m}`.slice(-2) + ":" + `0${s}`.slice(-2) + ":" + `0${ms}`.slice(-2)
+    );
   }
 
   /**
    * タイマー開始
    */
   public start() {
-    this.timer = this.timerService.getTimer().subscribe(time => {
+    this.timer = this.timerService.getTimer().subscribe((time) => {
       // カウントアップ
       this.time++;
       this.timeChanges.emit(this.time);
