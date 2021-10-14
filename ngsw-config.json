@@ -13,7 +13,8 @@
           "/manifest_ja.webmanifest",
           "/manifest_ko.webmanifest",
           "/*.css",
-          "/*.js"
+          "/*.js",
+          "/manifest.webmanifest"
         ]
       }
     }, {
