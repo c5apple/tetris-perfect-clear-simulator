@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AdsenseModule } from 'ng2-adsense';
 
 import { MyAdsenseComponent } from './my-adsense.component';
@@ -7,7 +7,7 @@ describe('MyAdsenseComponent', () => {
   let component: MyAdsenseComponent;
   let fixture: ComponentFixture<MyAdsenseComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         AdsenseModule.forRoot({}),
