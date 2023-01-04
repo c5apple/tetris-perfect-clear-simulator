@@ -11,7 +11,6 @@ import { PlayComponent } from './play/play.component';
 import { ScoreComponent } from './score/score.component';
 import { SettingComponent } from './setting/setting.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 import { MyAdsenseModule } from './shared/component/my-adsense/my-adsense.module';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { TimerComponent } from './shared/component/timer/timer.component';

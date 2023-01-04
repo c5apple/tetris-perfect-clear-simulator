@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { isDevMode, Component, OnInit } from '@angular/core';
 
 /**
  * GoogleAdsenseコンポーネント
@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyAdsenseComponent implements OnInit {
 
-  public display: boolean = 'localhost' !== location.hostname;
+  public display: boolean = !isDevMode() && 'localhost' !== location.hostname;
 
   constructor() { }
 
