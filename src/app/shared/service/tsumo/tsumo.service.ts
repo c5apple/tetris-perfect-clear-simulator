@@ -14,20 +14,20 @@ import { AnswerType } from '../answer-type.enum';
 export class TsumoService {
 
   /** 現在の開幕テンプレ */
-  currentTemplate: number;
+  currentTemplate: number = 2; // TODO ランダム
 
   /** 現在のツモ */
-  currentTumo: Mino[];
+  currentTumo: Mino[] = [];
 
   /** 正誤判定1 */
-  perfectPattern1: PerfectPattern[];
+  perfectPattern1: PerfectPattern[] = [];
   /** 正誤判定2 */
-  perfectPattern2: PerfectPattern[];
+  perfectPattern2: PerfectPattern[] = [];
 
   /** テト譜1 */
-  tetofu1: Tetofu[];
+  tetofu1: Tetofu[] = [];
   /** テト譜2 */
-  tetofu2: Tetofu[];
+  tetofu2: Tetofu[] = [];
 
   constructor(
     public http: HttpClient
@@ -58,7 +58,6 @@ export class TsumoService {
    * 開幕テンプレを取得する
    */
   public getTemplateNo(): number {
-    this.currentTemplate = 2; // TODO ランダム
     return this.currentTemplate;
   }
 

@@ -3,10 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { ScoreService } from './score.service';
 
 describe('ScoreService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: ScoreService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(ScoreService);
+  });
 
   it('should be created', () => {
-    const service: ScoreService = TestBed.get(ScoreService);
     expect(service).toBeTruthy();
   });
 });

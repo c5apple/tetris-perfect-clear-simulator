@@ -28,11 +28,11 @@ export class TopComponent implements OnInit {
     private route: ActivatedRoute,
     private translate: TranslateService,
     private scoreService: ScoreService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: { lang: string }) => {
-      this.lang = params.lang;
+    this.route.params.subscribe(params => {
+      this.lang = params['lang'];
 
       if (this.translate.getDefaultLang()) {
         this.translate.get('説明文').subscribe((description) => {

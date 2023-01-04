@@ -1,5 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { AdsenseModule } from 'ng2-adsense';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyAdsenseComponent } from './my-adsense.component';
 
@@ -7,17 +6,12 @@ describe('MyAdsenseComponent', () => {
   let component: MyAdsenseComponent;
   let fixture: ComponentFixture<MyAdsenseComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        AdsenseModule.forRoot({}),
-      ],
-      declarations: [MyAdsenseComponent]
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ MyAdsenseComponent ]
     })
-      .compileComponents();
-  }));
+    .compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(MyAdsenseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

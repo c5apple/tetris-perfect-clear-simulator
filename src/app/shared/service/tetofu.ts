@@ -4,8 +4,8 @@
 export class Tetofu {
 
   /** ツモ */
-  tsumo: string;
+  tsumo: string = '';
 
   /** テト譜URL */
-  tetofu: string;
+  tetofu: string = '';
 }

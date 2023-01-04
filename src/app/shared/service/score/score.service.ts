@@ -32,8 +32,8 @@ export class ScoreService {
   public ANSWERED_LIMIT = 1000;
 
   constructor() {
-    this.answeredList = JSON.parse(localStorage.getItem('answeredList')) || [];
-    this.bestTimeList = JSON.parse(localStorage.getItem('bestTimeList')) || [];
+    this.answeredList = JSON.parse(localStorage.getItem('answeredList') || '[]');
+    this.bestTimeList = JSON.parse(localStorage.getItem('bestTimeList') || '[]');
   }
 
   /**
@@ -110,7 +110,7 @@ export class ScoreService {
    * 正解したツモを解答時間が早い順に取得する
    */
   public getMostCorrectList(): {}[] {
-    let correctMap = {};
+    let correctMap: any = {};
 
     this.answeredList.filter(answer => {
       // 正解
@@ -131,7 +131,7 @@ export class ScoreService {
       }
     });
 
-    correctMap = Object.values(correctMap).sort((a, b) => {
+    correctMap = Object.values(correctMap).sort((a: any, b: any) => {
       // 解答時間が早い順
       if (a['time'] < b['time']) return -1;
       if (a['time'] > b['time']) return 1;
@@ -141,7 +141,7 @@ export class ScoreService {
       return 1;
     });
 
-    return Object.values(correctMap).slice(0, 5).map(answer => {
+    return Object.values(correctMap).slice(0, 5).map((answer: any) => {
       let mino: Mino[] = [];
       (answer['tsumo'] as string).split('').forEach(shape => {
         mino.push(new Mino(shape));
@@ -155,7 +155,7 @@ export class ScoreService {
    * 誤答したツモを解答時間が遅い順に取得する
    */
   public getMostWrongList(): {}[] {
-    let correctMap = {};
+    let correctMap: any = {};
 
     this.answeredList.filter(answer => {
       // 誤答
@@ -176,7 +176,7 @@ export class ScoreService {
       }
     });
 
-    correctMap = Object.values(correctMap).sort((a, b) => {
+    correctMap = Object.values(correctMap).sort((a: any, b: any) => {
       // 解答時間が遅い順
       if (a['time'] > b['time']) return -1;
       if (a['time'] < b['time']) return 1;
@@ -186,7 +186,7 @@ export class ScoreService {
       return 1;
     });
 
-    return Object.values(correctMap).slice(0, 5).map(answer => {
+    return Object.values(correctMap).slice(0, 5).map((answer: any) => {
       let mino: Mino[] = [];
       (answer['tsumo'] as string).split('').forEach(shape => {
         mino.push(new Mino(shape));

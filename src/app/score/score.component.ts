@@ -14,37 +14,37 @@ import { ScoreService } from 'shared/service/score';
 export class ScoreComponent implements OnInit {
 
   /** 言語 */
-  lang: string;
+  lang?: string;
 
   /** 直近の件数 */
   answerdLimit = 0;
 
   /** 正解率 */
-  correctRate: string;
+  correctRate?: string;
 
   /** 正解数 */
-  correctCount: number;
+  correctCount: number = 0;
 
   /** 誤答数 */
-  wrongCount: number;
+  wrongCount: number = 0;
 
   /** 平均解答時間 */
-  averageAnswerTime: string;
+  averageAnswerTime?: string;
 
   /** 最速タイム 10回 */
-  bestTime10: { needCorrectCount: number; time: number; wrongCount: number; };
+  bestTime10?: { needCorrectCount: number; time: number; wrongCount: number; };
 
   /** 最速タイム 20回 */
-  bestTime20: { needCorrectCount: number; time: number; wrongCount: number; };
+  bestTime20?: { needCorrectCount: number; time: number; wrongCount: number; };
 
   /** 最速タイム 40回 */
-  bestTime40: { needCorrectCount: number; time: number; wrongCount: number; };
+  bestTime40?: { needCorrectCount: number; time: number; wrongCount: number; };
 
   /** 得意なツモ */
-  correctList: {}[] = [];
+  correctList: any[] = [];
 
   /** 苦手なツモ */
-  wrongList: {}[] = [];
+  wrongList: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -53,9 +53,9 @@ export class ScoreComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: { lang: string }) => {
+    this.route.params.subscribe((params) => {
       // 言語設定
-      this.lang = params.lang;
+      this.lang = params['lang'];
 
       // 各種スコアを取得
       this.answerdLimit = this.scoreService.ANSWERED_LIMIT;

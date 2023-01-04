@@ -1,16 +1,16 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { GaService } from './ga.service';
 
 describe('GaService', () => {
+  let service: GaService;
+
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [GaService]
-    });
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(GaService);
   });
 
-  it('should be created', inject([GaService], (service: GaService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
-
+  });
 });

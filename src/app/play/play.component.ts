@@ -21,26 +21,26 @@ export class PlayComponent implements OnInit {
   lang = '';
 
   /** モード名 */
-  modeName: string;
+  modeName?: string;
 
   /** 開幕テンプレ */
-  templateNo: number;
+  templateNo: number = 0;
 
   /** ツモ */
-  tsumo: Mino[];
+  tsumo: Mino[] = [];
 
   /** 答えたか */
   answerShowed = false;
 
   /** 正誤判定1 */
-  answerMark1: number;
+  answerMark1?: number;
   /** 正誤判定2 */
-  answerMark2: number;
+  answerMark2?: number;
   /** 正誤判定3 */
-  answerMark3: number;
+  answerMark3?: number;
 
   /** 正誤メッセージ */
-  answerMessage: string;
+  answerMessage?: string;
 
   /** パフェパターン */
   perfectMino: Mino[][] = [];
@@ -75,7 +75,7 @@ export class PlayComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: { lang: string, tsumo: string }) => {
+    this.route.params.subscribe((params) => {
       // プレイモード設定
       if (location.pathname.indexOf('/play/10times') !== -1) {
         this.needCorrectCount = 10;
@@ -91,11 +91,11 @@ export class PlayComponent implements OnInit {
       }
 
       // ツモを取得
-      this.getTsumo(params.tsumo);
+      this.getTsumo(params['tsumo']);
       // 言語設定
-      this.lang = params.lang;
+      this.lang = params['lang'];
 
-      this.isDebug = Boolean(params.tsumo);
+      this.isDebug = Boolean(params['tsumo']);
     });
   }
 
@@ -135,7 +135,7 @@ export class PlayComponent implements OnInit {
     this.answerShowed = true;
 
     // 正誤判定
-    const tsumo = this.tsumo.map(mino => mino.shape).join('');
+    const tsumo = this.tsumo?.map(mino => mino.shape).join('');
     const answer = this.tsumoService.getAnswer(tsumo);
 
     // タイマー停止

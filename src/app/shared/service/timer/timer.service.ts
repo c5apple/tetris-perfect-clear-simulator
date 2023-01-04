@@ -13,10 +13,10 @@ export class TimerService {
   private _timeLimit = 60 * 5 * 100;  // 5分
 
   /** タイマー */
-  private timer: Subscription;
+  private timer?: Subscription;
 
   /** タイマー変更検知 */
-  private timerBehavior = new BehaviorSubject<number>(null);
+  private timerBehavior = new BehaviorSubject<number | null>(null);
 
   constructor() {
     // ローカルストレージから値を取得
@@ -41,7 +41,7 @@ export class TimerService {
     localStorage.setItem('timeLimit', this._timeLimit.toString());
   }
 
-  public getTimer(): Observable<number> {
+  public getTimer(): Observable<number | null> {
     return this.timerBehavior;
   }
 
@@ -62,7 +62,7 @@ export class TimerService {
    * タイマー停止
    */
   public stop() {
-    this.timer.unsubscribe();
+    this.timer?.unsubscribe();
   }
 
 

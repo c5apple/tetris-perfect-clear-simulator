@@ -3,10 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { TsumoService } from './tsumo.service';
 
 describe('TsumoService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: TsumoService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(TsumoService);
+  });
 
   it('should be created', () => {
-    const service: TsumoService = TestBed.get(TsumoService);
     expect(service).toBeTruthy();
   });
 });

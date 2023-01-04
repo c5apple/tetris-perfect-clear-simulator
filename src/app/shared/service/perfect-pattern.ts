@@ -6,14 +6,14 @@ import { AnswerType } from './answer-type.enum';
 export class PerfectPattern {
 
   /** パフェがあるか */
-  answer: AnswerType;
+  answer: AnswerType = AnswerType.NONE;
 
   /** ツモ */
-  tsumo: string;
+  tsumo: string = '';
 
   /** パフェパターン */
-  answers: string[];
+  answers: string[] = [];
 
   /** テト譜 */
-  tetofu?: string[];
+  tetofu: string[] = [];
 }

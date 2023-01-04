@@ -50,11 +50,11 @@ export class AppComponent implements OnInit {
       }),
       filter(route => route.outlet === 'primary'),
       mergeMap(route => route.params)
-    ).subscribe((params: { lang: string }) => {
+    ).subscribe((params) => {
       window.scrollTo(0, 0);
 
       // URLの言語チェック
-      this.checkLang(params.lang);
+      this.checkLang(params['lang']);
     });
 
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((params: any) => {
@@ -84,11 +84,12 @@ export class AppComponent implements OnInit {
   /**
    * 言語チェック
    */
-  private checkLang(lang: string) {
+  private checkLang(lang: string): void {
     const langNo = this.availableLangList.indexOf(lang);
     if (langNo === -1) {
       // デフォルト英語
-      return window.location.href = './en';
+      window.location.href = './en';
+      return;
     }
 
     const baseUrl = 'https://games.banana-juice.com/tetris-perfect-clear-simulator';
@@ -97,9 +98,9 @@ export class AppComponent implements OnInit {
     this.translate.setDefaultLang(lang);
     this.translate.use(lang);
     document.documentElement.lang = this.availableHtmlLangList[langNo];
-    document.getElementById('my-manifest').setAttribute('href', 'manifest_' + lang + '.webmanifest');
-    document.getElementById('canonical').setAttribute('href', baseUrl + '/' + lang);
-    document.getElementById('amphtml').setAttribute('href', baseUrl + '/amp_' + lang + '.html');
+    document.getElementById('my-manifest')?.setAttribute('href', 'manifest_' + lang + '.webmanifest');
+    document.getElementById('canonical')?.setAttribute('href', baseUrl + '/' + lang);
+    document.getElementById('amphtml')?.setAttribute('href', baseUrl + '/amp_' + lang + '.html');
   }
 
   /**
@@ -107,7 +108,7 @@ export class AppComponent implements OnInit {
    * @param state 状態
    * @param parent 親
    */
-  private getRouterData(state, parent, key: string): Array<string> {
+  private getRouterData(state: any, parent: ActivatedRoute, key: string): Array<string> {
     const data: Array<string> = [];
     if (parent && parent.snapshot.data && parent.snapshot.data[key]) {
       data.push(parent.snapshot.data[key]);
